@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pemilihan AJK KGS SERIN 2026</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#f4f3ff;--card:#ffffffcc;--solid:#fff;--tx:#1b1840;--mut:#6b6995;--bd:#e3e1fa;--p:#5b4be8;--p2:#8b5cf6;--acc:#14b8a6;--ok:#10b981;--gold:#f59e0b;--sh:0 10px 30px -12px #5b4be840;--blob1:#c4b5fd;--blob2:#99f6e4;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0d24;--card:#1a1740cc;--solid:#1a1740;--tx:#efeeff;--mut:#a5a3d1;--bd:#2f2b66;--p:#8b7bff;--p2:#b18cff;--sh:0 10px 30px -12px #000a;--blob1:#4c1d95;--blob2:#115e59}}
+:root[data-theme="dark"]{--bg:#0f0d24;--card:#1a1740cc;--solid:#1a1740;--tx:#efeeff;--mut:#a5a3d1;--bd:#2f2b66;--p:#8b7bff;--p2:#b18cff;--sh:0 10px 30px -12px #000a;--blob1:#4c1d95;--blob2:#115e59}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;position:relative;overflow-x:hidden;line-height:1.5}
+body::before,body::after{content:"";position:fixed;width:420px;height:420px;border-radius:50%;filter:blur(90px);opacity:.55;z-index:0;pointer-events:none}
+body::before{background:var(--blob1);top:-140px;left:-120px}
+body::after{background:var(--blob2);bottom:-160px;right:-120px}
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:18px 16px 60px}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--p),var(--p2));display:grid;place-items:center;font-size:24px;box-shadow:var(--sh)}
+.brand b{display:block;font-size:17px;letter-spacing:-.2px}.brand span{font-size:12px;color:var(--mut)}
+.tabs{display:flex;background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:4px;backdrop-filter:blur(10px)}
+.tabs button{border:0;background:none;color:var(--mut);font:600 13px inherit;font-family:inherit;padding:9px 18px;border-radius:999px;cursor:pointer;transition:.2s}
+.tabs button.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;box-shadow:var(--sh)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:24px;box-shadow:var(--sh);backdrop-filter:blur(14px)}
+.hero{text-align:center;padding:34px 22px;max-width:520px;margin:30px auto 0}
+.hero .big{font-size:50px;margin-bottom:6px}
+h1{font-size:26px;line-height:1.2;margin:0 0 8px;letter-spacing:-.5px}
+h2{font-size:18px;margin:26px 0 12px;display:flex;align-items:center;gap:8px}
+.mut{color:var(--mut);font-size:14px;margin:0}
+input.f,select.f,textarea.f{width:100%;margin-top:18px;padding:15px 18px;border-radius:14px;border:1.5px solid var(--bd);background:var(--solid);color:var(--tx);font:500 16px inherit;font-family:inherit;outline:none;transition:.2s}
+input.f:focus,select.f:focus,textarea.f:focus{border-color:var(--p);box-shadow:0 0 0 4px #5b4be826}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font:700 15px inherit;font-family:inherit;padding:14px 26px;border-radius:14px;color:#fff;background:linear-gradient(135deg,var(--p),var(--p2));box-shadow:var(--sh);transition:.2s;width:100%;margin-top:14px}
+.btn:hover:not(:disabled){transform:translateY(-2px)}.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.btn.ghost{background:var(--solid);color:var(--tx);border:1px solid var(--bd);box-shadow:none}
+.btn.sm{width:auto;padding:9px 16px;font-size:13px;margin:0}
+.err{color:#e11d48;font-size:13.5px;margin-top:12px;font-weight:600;min-height:1px}
+.prog{position:sticky;top:0;z-index:5;margin-bottom:16px}
+.prog .card{padding:14px 18px;display:flex;align-items:center;gap:14px;border-radius:18px}
+.bar{flex:1;height:10px;border-radius:99px;background:var(--bd);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--acc),var(--p));transition:width .5s}
+.cnt{font-weight:800;font-size:15px;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.pos{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px;border-radius:18px;background:var(--card);border:1.5px solid var(--bd);transition:.2s;backdrop-filter:blur(10px)}
+.pos:hover{transform:translateY(-3px);border-color:var(--p);box-shadow:var(--sh)}
+.pos .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:var(--bd);flex:none}
+.pos small{display:block;color:var(--mut);font-size:12px;font-weight:600}
+.pos b{display:block;font-size:14.5px;overflow-wrap:anywhere}
+.pos.sel{border-color:var(--ok);background:linear-gradient(135deg,#10b98122,var(--card))}
+.pos.sel .ic{background:var(--ok);color:#fff}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;flex:none}
+.ov{position:fixed;inset:0;z-index:20;background:#0b0824a6;backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center}
+.ov.on{display:flex}
+.sheet{background:var(--solid);width:100%;max-width:560px;max-height:84vh;border-radius:26px 26px 0 0;padding:20px 18px calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;animation:up .3s ease}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.sheet .list{overflow:auto;margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.row{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;cursor:pointer;font-weight:600;font-size:14.5px;transition:.15s}
+.row:hover{background:var(--bd)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{padding:18px}.stat b{font-size:30px;display:block;letter-spacing:-1px}.stat span{font-size:12.5px;color:var(--mut);font-weight:600}
+.res{padding:18px;margin-bottom:12px}
+.res h3{margin:0 0 12px;font-size:15px;display:flex;justify-content:space-between;align-items:center}
+.cand{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,2fr) 34px;gap:10px;align-items:center;font-size:13.5px;margin:7px 0;font-weight:600}
+.cand .n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cand .b{height:10px;border-radius:99px;background:var(--bd);overflow:hidden}.cand .b i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--p2));border-radius:99px;transition:width .6s}
+.cand.top .b i{background:linear-gradient(90deg,var(--gold),#f97316)}
+.cand.top .n::before{content:"👑 "}
+.cand em{font-style:normal;text-align:right;font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 13px;border-radius:99px;font-size:13px;font-weight:600;background:var(--bd);color:var(--mut)}
+.chip.ok{background:#10b98126;color:var(--ok)}
+.sum{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed var(--bd);font-size:14px}.sum span{color:var(--mut)}.sum b{text-align:right}
+@media(max-width:520px){h1{font-size:22px}.cand{grid-template-columns:1fr 34px}.cand .b{grid-column:1/-1;order:3}}
+.dz{border:2px dashed var(--p);border-radius:18px;padding:24px;text-align:center;cursor:pointer;background:var(--card);transition:.2s}.dz:hover{background:var(--bd)}textarea.f{min-height:110px;resize:vertical;margin-top:12px}.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:14px}.it{display:flex;align-items:center;gap:6px;padding:7px 0;font-size:13.5px;font-weight:600;border-bottom:1px dashed var(--bd)}.it span{flex:1;min-width:0;overflow-wrap:anywhere}.it button{border:0;background:var(--bd);color:var(--tx);border-radius:8px;padding:4px 9px;font:600 11px inherit;font-family:inherit;cursor:pointer}
+.vt{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 6px}.vt button{all:unset;cursor:pointer;padding:9px 16px;border-radius:99px;font-size:13.5px;font-weight:700;background:var(--card);border:1px solid var(--bd);color:var(--mut)}.vt button.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-color:transparent}
+.tw{overflow-x:auto;border-radius:14px;border:1px solid var(--bd);background:var(--solid)}
+table.t{border-collapse:collapse;width:100%;font-size:13.5px}table.t th,table.t td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}table.t th{font-size:12px;color:var(--mut);font-weight:700;background:var(--card)}table.t tr:last-child td{border-bottom:0}
+table.t td.c,table.t th.c{text-align:center}table.t td.nm{font-weight:700;white-space:normal;min-width:150px}
+table.mx td.nm,table.mx th:first-child{position:sticky;left:0;background:var(--solid);z-index:1;box-shadow:1px 0 0 var(--bd)}
+table.mx td.v{text-align:center;font-weight:700;min-width:46px}table.mx td.v.w{outline:2px solid var(--gold);outline-offset:-2px;border-radius:6px}table.mx td.z{color:var(--bd)}
+.badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11.5px;font-weight:800;background:#f59e0b26;color:var(--gold);margin-left:6px;white-space:nowrap}.badge.g{background:#10b98126;color:var(--ok)}
+.cand{grid-template-columns:26px minmax(0,1.4fr) minmax(0,2fr) 30px 44px!important}.cand .rk{font-size:12px;color:var(--mut);text-align:center;font-weight:800}.cand small{text-align:right;color:var(--mut);font-size:12px}.cand.top .n::before{content:""!important}.cand.top .rk{color:var(--gold)}
+.tg{margin-top:8px}.note{font-size:12.5px;color:var(--mut);margin:8px 2px 0}
+@media(max-width:520px){.cand{grid-template-columns:26px 1fr 30px 44px!important}.cand .b{grid-column:2/-1!important;order:5!important}}
+.ld{padding:10px 0;border-bottom:1px dashed var(--bd)}.ld:last-of-type{border-bottom:0}.lt{font-size:12px;color:var(--mut);font-weight:700}.ln{font-size:14.5px;font-weight:800;margin:2px 0;overflow-wrap:anywhere}.lm{font-size:12.5px;color:var(--mut);font-weight:600}.lm b{color:var(--tx)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><div class="logo">🗳️</div><div><b id="club">KGS SERIN 2026</b><span>Kelab Guru &amp; Staf · Pemilihan AJK</span></div></div>
+    <div class="tabs"><button id="t-guru" class="on">Bahagian Guru</button><button id="t-ajk">AJK</button></div>
+  </header>
+  <div id="mode" style="display:none;font-size:12.5px;font-weight:600;color:var(--mut);margin:-8px 0 16px"></div>
+  <main id="app"></main>
+</div>
+<div class="ov" id="ov"><div class="sheet" id="sheet"></div></div>
+
+<script>
+/* ====== TETAPAN ====== */
+const ADMIN_PASS = "SERIN2026"; // tukar kata laluan AJK di sini
+let VOTERS = [
+  "ZAKARIA BIN AHMAD",
+  "NOOR AZNIZA BINTI AZAHARI",
+  "AZMIAH BT ABD AZIZ",
+  "NOR AFIDAH BINTI OTHMAN",
+  "NOR HASHIM BIN ZAKARIA",
+  "NOR SHARIZA BINTI MOHD ADNAM",
+  "MAJDI B MUSTAFAR",
+  "NORAINI BINTI JAAFAR",
+  "SITI NORFITRIYAH BT ZAINAL ABIDIN",
+  "NORASIKIN BINTI MOHAMAD NOOR",
+  "FAZLINA BT MUSTAFA",
+  "NORFAZILAH BT ARIFIN",
+  "NOR BADARIAH BT BAKAR",
+  "NORLILI BT ZULKIPLE",
+  "NORAINI BT OSMAN",
+  "NURHAFIZAH BINTI SIMAON",
+  "ROHANIYAH BT MANAF",
+  "PAUZI BIN AWANG",
+  "AFFIDAYATUL AIDA BINTI LATEH",
+  "RAJA MOHD FATYHIE B. RAJA IBRAHIM",
+  "AMIRUL ARSYAD BIN MOHD",
+  "ROSLINA BINTI ALLI",
+  "AZLINA BINTI A.AZIZ",
+  "SAKINAH BINTI ABD KAIYOM",
+  "AZMA HANIM BINTI ABD AZIZ",
+  "SHARIFAH NURUL AMIRAH BINTI SYED ALWI",
+  "BAHARUDIN BIN ALIAS",
+  "SHEE FOO LING",
+  "BASHIRUDIN BIN ABD RAHIM",
+  "SITI NORIDAYU BT MHD DERIS",
+  "BUSTAMI B AHMAD",
+  "TALHAH BIN ENDUT",
+  "CHE MOHAMAD RIZUAN BIN CHE TAIB",
+  "WAN AMIZA BT W ABDULLAH",
+  "CHE WAN JOHANA BINTI CHE WAN JOHAR",
+  "WAN NOR IZZATI BINTI WAN MOHD BASHAR",
+  "FAIZAH BT RAKIB",
+  "ZAWAWI BIN TEHERAN",
+  "HAFSAH BINTI ABU BAKAR",
+  "NURDIANA ATHIRAH BINTI MOHD KHAIRUDDIN",
+  "IEMA SOFEA BINTI KAMARUL ARIFIN",
+  "WAN MUHAMMAD MUSLIHUDDIN BIN WAN RUSLIZAN",
+  "MARDIYYAH BINTI MOHD",
+  "KHAIRUN NISA BAHIYAH BINTI MOHAMAD HUSAINI",
+  "MOHAMAD FADZLI BIN RASLI",
+  "ATIKAH BINTI SHAFIEE",
+  "MOHAMAD NASRULHAQ BIN RAZALI",
+  "KHADIJAH BT RAHMAT",
+  "MOHD ARSYAD BIN AHMAD TIIS",
+  "MAZILA BINTI MOHAMMAD",
+  "MOHD USRA B MD YUSOP",
+  "MAZLINDA BINTI OTHMAN",
+  "MOHD ZUHAIMI BIN AWANG",
+  "MOHD ZULKEFLI BIN ZAKARIA",
+  "MOHD ZULHILMI B ZULKIFLI",
+  "NOR AZLINA BINTI YAKUB",
+  "MUHAMMAD HANIS BIN SAKFIEE",
+  "NORFAZLINA BT MOHAMAD",
+  "MUHAMMAD SABRI B KADZIM",
+  "NORHALIZA BINTI ABU SAID",
+  "NIK FATIN FARAFISHA BINTI MOHD ZAMRI",
+  "NURHIDAYATUL FARHANAH BINTI AHMAD",
+  "NOOR ASHIKIN BT KAMARUDDIN",
+  "SHAIYIDAH BINTI YASIN",
+  "NORADAWIYAH BINTI SUPANDI"
+], ROSTER = [
+  "AFFIDAYATUL AIDA BINTI LATEH",
+  "BAHARUDIN BIN ALIAS",
+  "BASHIRUDIN BIN ABD RAHIM",
+  "BUSTAMI B AHMAD",
+  "CHE MOHAMAD RIZUAN BIN CHE TAIB",
+  "HAFSAH BINTI ABU BAKAR",
+  "IEMA SOFEA BINTI KAMARUL ARIFIN",
+  "MOHAMAD FADZLI BIN RASLI",
+  "MOHD USRA B MD YUSOP",
+  "MUHAMMAD SABRI B KADZIM",
+  "NOOR ASHIKIN BT KAMARUDDIN",
+  "NORADAWIYAH BINTI SUPANDI",
+  "NOR AFIDAH BINTI OTHMAN",
+  "NOR SHARIZA BINTI MOHD ADNAM",
+  "NORASIKIN BINTI MOHAMAD NOOR",
+  "NORFAZILAH BT ARIFIN",
+  "NORLILI BT ZULKIPLE",
+  "PAUZI BIN AWANG",
+  "ROSLINA BINTI ALLI",
+  "SHEE FOO LING",
+  "SITI NORIDAYU BT MHD DERIS",
+  "WAN AMIZA BT W ABDULLAH",
+  "WAN NOR IZZATI BINTI WAN MOHD BASHAR",
+  "ZAWAWI BIN TEHERAN",
+  "NURDIANA ATHIRAH BINTI MOHD KHAIRUDDIN",
+  "WAN MUHAMMAD MUSLIHUDDIN BIN WAN RUSLIZAN",
+  "KHAIRUN NISA BAHIYAH BINTI MOHAMAD HUSAINI",
+  "FAZLINA BT MUSTAFA",
+  "NOR BADARIAH BT BAKAR",
+  "NORAINI BT OSMAN",
+  "ROHANIYAH BT MANAF"
+], AKPS = [
+  "ATIKAH BINTI SHAFIEE",
+  "KHADIJAH BT RAHMAT",
+  "MAZILA BINTI MOHAMMAD",
+  "MAZLINDA BINTI OTHMAN",
+  "MOHD ZULKEFLI BIN ZAKARIA",
+  "NOR AZLINA BINTI YAKUB",
+  "NORFAZLINA BT MOHAMAD",
+  "NURHIDAYATUL FARHANAH BINTI AHMAD",
+  "SHAIYIDAH BINTI YASIN"
+];
+let ALL = ROSTER.concat(AKPS), CFG = {club:'KGS SERIN 2026', ver:0, pass:''};
+const isAkp = i => i >= ROSTER.length;
+const POS = [
+{id:'pengerusi',t:'Pengerusi',g:1,ic:'👑'},{id:'timbalan',t:'Timbalan Pengerusi',g:1,ic:'🥈'},
+{id:'bendahari',t:'Bendahari',g:1,ic:'💰'},{id:'naib',t:'Naib Bendahari',g:1,ic:'🪙'},
+{id:'setiausaha',t:'Setiausaha',g:1,ic:'📝'},
+{id:'guru1',t:'AJK Biasa (Guru) 1',g:2,ic:'🎓'},{id:'guru2',t:'AJK Biasa (Guru) 2',g:2,ic:'🎓'},
+{id:'akp',t:'AKP (Anggota Kumpulan Pelaksana)',g:2,ic:'🛠️'}];
+
+/* ====== STATE ====== */
+const $ = s => document.querySelector(s), app = $('#app');
+const S = {tab:'guru', step:'login', voter:null, picks:{}, admin:false, sub:'dash', draft:null, votes:[], err:'', confirm:false, dbState:'wait', view:'pos', exp:{}};
+let db = null, unsub = null, lastCfg = null;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm = s => s.toLowerCase().replace(/\b(en|pn|cik|dr|encik|puan|cikgu|tuan|ustaz|ustazah)\b\.?/g,' ').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+const ini = n => n.replace(/^(En|Pn|Cik|Dr)\.\s*/,'').split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+const av = (i, n) => `<span class="av" style="background:hsl(${(i*47)%360} 62% 50%)">${ini(n)}</span>`;
+
+(async () => {
+  const t = setTimeout(() => { if (!db) { S.dbState = 'fail'; render(); } }, 10000);
+  if (!window.claude) { db = localDb(); const mo = $('#mode'); mo.textContent = '\ud83d\udcbe Mod luar talian: data disimpan pada peranti ini sahaja.'; mo.style.display = 'block'; }
+  else { try { db = await window.claude.use("db"); } catch (e) { db = null; } }
+  clearTimeout(t);
+  S.dbState = db ? 'ok' : 'fail';
+  if (db) db.doc('config/main').onSnapshot(s => applyCfg(s.exists ? s.data() : null), () => {});
+  render();
+})();
+
+function localDb(){
+  const K = 'kgs_serin_db', rd = () => { try { return JSON.parse(localStorage.getItem(K) || '{}'); } catch (e) { return {}; } }, wr = o => localStorage.setItem(K, JSON.stringify(o)), subs = [];
+  const fire = () => subs.slice().forEach(f => f()), snap = (p, d) => ({id: p.split('/').pop(), exists: d !== undefined, data: () => d});
+  const watch = (f, fn) => { const g = () => fn(f()); subs.push(g); g(); return () => { const i = subs.indexOf(g); if (i >= 0) subs.splice(i, 1); }; };
+  const doc = p => ({id: p.split('/').pop(), path: p, get: async () => snap(p, rd()[p]),
+    set: async d => { const o = rd(); o[p] = d; wr(o); fire(); }, delete: async () => { const o = rd(); delete o[p]; wr(o); fire(); },
+    onSnapshot: fn => watch(() => snap(p, rd()[p]), fn)});
+  const qs = p => { const o = rd(); return {docs: Object.keys(o).filter(k => k.startsWith(p + '/') && !k.slice(p.length + 1).includes('/')).map(k => snap(k, o[k]))}; };
+  return {doc, collection: p => ({doc: id => doc(p + '/' + id), get: async () => qs(p), onSnapshot: fn => watch(() => qs(p), fn)})};
+}
+function applyCfg(c){
+  const sig = JSON.stringify(c || null);
+  if (sig === lastCfg) return; /* tiada perubahan sebenar: jangan lukis semula halaman (punca tulisan terpadam) */
+  const first = lastCfg === null; lastCfg = sig;
+  const old = CFG.ver;
+  if (c && c.guru) { ROSTER = c.guru; AKPS = c.akp || []; VOTERS = c.voters || c.guru.concat(c.akp || []); CFG = {club: c.club || 'KGS SERIN 2026', ver: c.ver || 0, pass: c.pass || ''}; }
+  ALL = ROSTER.concat(AKPS); $('#club').textContent = CFG.club;
+  if (CFG.ver !== old && S.step === 'ballot') { S.step = 'login'; S.voter = null; S.picks = {}; }
+  const typing = document.activeElement && /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName) && app.contains(document.activeElement) && CFG.ver === old;
+  if (S.dbState === 'ok' && !typing && !(S.tab === 'ajk' && S.admin && S.sub === 'set')) render();
+}
+/* ====== NAVIGASI ====== */
+function setTab(t){ S.tab = t; $('#t-guru').classList.toggle('on', t==='guru'); $('#t-ajk').classList.toggle('on', t==='ajk'); render(); }
+$('#t-guru').onclick = () => setTab('guru'); $('#t-ajk').onclick = () => setTab('ajk');
+function render(){ closeSheet(); (S.tab==='guru' ? viewGuru : viewAdmin)(); window.scrollTo({top:0}); }
+
+/* ====== BAHAGIAN GURU ====== */
+function viewGuru(){
+  if (S.dbState !== 'ok') return app.innerHTML = noDb();
+  if (S.step === 'login') return viewLogin();
+  if (S.step === 'done') return viewDone();
+  viewBallot();
+}
+function noDb(){
+  return `<div class="card hero"><div class="big">${S.dbState==='wait'?'⏳':'🔒'}</div><h1>${S.dbState==='wait'?'Menyambung…':'Sambungan tidak tersedia'}</h1>
+  <p class="mut">${S.dbState==='wait'?'Sila tunggu sebentar.':'Sila buka sistem ini melalui pautan yang dikongsi oleh AJK dan log masuk ke akaun anda.'}</p></div>`;
+}
+function viewLogin(){
+  app.innerHTML = `<div class="card hero"><div class="big">🗳️</div><h1>Pemilihan AJK Baharu</h1>
+  <p class="mut">Taip nama anda untuk mula mengundi. Anda perlu memilih <b>8 nama berbeza</b> bagi 8 jawatan.</p>
+  <input class="f" id="nm" list="dl" placeholder="Taip nama anda (penuh atau pendek)…" autocomplete="off">
+  <datalist id="dl">${VOTERS.map(n=>`<option value="${esc(n)}">`).join('')}</datalist>
+  <div class="err" id="er">${esc(S.err)}</div><div id="sg" class="list" style="display:flex;flex-direction:column;gap:6px;text-align:left"></div>
+  <button class="btn" id="go">Masuk &amp; Mula Mengundi →</button></div>`;
+  const go = async () => {
+    const q = norm($('#nm').value); $('#sg').innerHTML = ''; $('#er').textContent = '';
+    if (!q) return fail('Sila taip nama anda.');
+    let m = VOTERS.map((n,i)=>i).filter(i => norm(VOTERS[i]) === q);
+    if (!m.length) { const tk = q.split(' '); m = VOTERS.map((n,i)=>i).filter(i => tk.every(t => norm(VOTERS[i]).split(' ').some(w => w.startsWith(t)))); }
+    if (m.length > 1) { showSg(m); return fail('Beberapa nama sepadan. Sila pilih nama anda:'); }
+    if (!m.length) return fail('Nama tidak ditemui. Cuba taip sebahagian nama anda.');
+    $('#go').disabled = true;
+    try {
+      const snap = await db.collection('votes').doc('v'+m[0]).get();
+      if (snap.exists && (snap.data().ver||0) === CFG.ver) { S.voter = m[0]; S.step = 'done'; S.already = true; return render(); }
+    } catch (e) { $('#go').disabled = false; return fail('Ralat sambungan. Cuba lagi.'); }
+    S.voter = m[0]; S.picks = {}; S.step = 'ballot'; S.already = false; S.err = ''; render();
+  };
+  const fail = m => { $('#er').textContent = m; };
+  const showSg = m => { $('#sg').innerHTML = m.slice(0,8).map(i => `<button class="row" data-i="${i}">${av(i, VOTERS[i])}<span>${esc(VOTERS[i])}</span></button>`).join(''); $('#sg').querySelectorAll('.row').forEach(r => r.onclick = () => { $('#nm').value = VOTERS[+r.dataset.i]; go(); }); };
+  $('#go').onclick = go; $('#nm').onkeydown = e => { if (e.key === 'Enter') go(); };
+  $('#nm').focus();
+}
+const chosen = () => Object.values(S.picks);
+function viewBallot(){
+  const n = chosen().length, card = p => {
+    const i = S.picks[p.id], has = i !== undefined;
+    return `<button class="pos ${has?'sel':''}" data-p="${p.id}"><span class="ic">${has?'✓':p.ic}</span>
+    <span style="min-width:0"><small>${p.t}</small><b>${has?esc(ALL[i]):'Pilih nama →'}</b></span></button>`;
+  };
+  app.innerHTML = `<div class="prog"><div class="card"><div style="font-size:13px"><span class="mut">Selamat datang,</span><br><b>${esc(VOTERS[S.voter])}</b></div>
+    <div class="bar"><i style="width:${n/8*100}%"></i></div><div class="cnt">${n}/8</div></div></div>
+  <h2>⭐ 5 AJK Tertinggi</h2><div class="grid">${POS.filter(p=>p.g===1).map(card).join('')}</div>
+  <h2>🤝 3 AJK Biasa</h2><div class="grid">${POS.filter(p=>p.g===2).map(card).join('')}</div>
+  <p class="mut" style="margin-top:18px">Nama yang telah dipilih akan hilang daripada senarai jawatan lain.</p>
+  <button class="btn" id="sub" ${n<8?'disabled':''}>${n<8?`Pilih ${8-n} lagi jawatan`:'Semak &amp; Hantar Undi ✓'}</button>
+  <button class="btn ghost" id="out">Batal &amp; keluar</button>`;
+  app.querySelectorAll('.pos').forEach(b => b.onclick = () => openPicker(b.dataset.p));
+  $('#sub').onclick = openConfirm;
+  $('#out').onclick = () => { S.step = 'login'; S.voter = null; S.picks = {}; render(); };
+}
+function openSheet(h){ $('#sheet').innerHTML = h; $('#ov').classList.add('on'); }
+function closeSheet(){ $('#ov').classList.remove('on'); }
+$('#ov').onclick = e => { if (e.target.id === 'ov') closeSheet(); };
+
+function openPicker(pid){
+  const p = POS.find(x => x.id === pid), cur = S.picks[pid], used = chosen().filter(i => i !== cur);
+  const pool = ALL.map((n,i)=>i).filter(i => (pid === 'akp') === isAkp(i) && !used.includes(i));
+  openSheet(`<div style="display:flex;justify-content:space-between;align-items:center"><div><small class="mut">Pilih untuk jawatan</small><div style="font-weight:800;font-size:18px">${p.ic} ${p.t}</div></div>
+    <button class="btn ghost sm" id="x">Tutup</button></div>
+    <input class="f" id="q" placeholder="Cari nama…" style="margin-top:12px"><div class="list" id="ls"></div>`);
+  const draw = () => {
+    const q = $('#q').value.toLowerCase(), items = pool.filter(i => ALL[i].toLowerCase().includes(q));
+    $('#ls').innerHTML = (cur !== undefined ? `<button class="row" data-c="1" style="color:#e11d48">✕ Kosongkan pilihan</button>` : '') +
+      (items.map(i => `<button class="row" data-i="${i}" ${i===cur?'style="background:#10b98122"':''}>${av(i, ALL[i])}<span>${esc(ALL[i])}${i===cur?' ✓':''}</span></button>`).join('') || '<p class="mut" style="padding:14px">Tiada nama sepadan.</p>');
+    $('#ls').querySelectorAll('.row').forEach(r => r.onclick = () => {
+      if (r.dataset.c) delete S.picks[pid]; else S.picks[pid] = +r.dataset.i;
+      closeSheet(); viewBallot();
+    });
+  };
+  $('#q').oninput = draw; $('#x').onclick = closeSheet; draw();
+}
+function openConfirm(){
+  openSheet(`<div style="font-weight:800;font-size:18px;margin-bottom:8px">Semak undi anda</div><div class="list">${
+    POS.map(p => `<div class="sum"><span>${p.t}</span><b>${esc(ALL[S.picks[p.id]])}</b></div>`).join('')}</div>
+    <p class="err" id="ce"></p><button class="btn" id="ok">Hantar Undi</button><button class="btn ghost" id="bk">Kembali ubah</button>`);
+  $('#bk').onclick = closeSheet;
+  $('#ok').onclick = async () => {
+    $('#ok').disabled = true; $('#ok').textContent = 'Menghantar…';
+    try {
+      const ref = db.collection('votes').doc('v'+S.voter);
+      if ((s => s.exists && (s.data().ver||0) === CFG.ver)(await ref.get())) { S.step = 'done'; S.already = true; return render(); }
+      await ref.set({voter: VOTERS[S.voter], idx: S.voter, picks: S.picks, ts: Date.now(), ver: CFG.ver});
+      S.step = 'done'; S.already = false; render();
+    } catch (e) { $('#ok').disabled = false; $('#ok').textContent = 'Hantar Undi'; $('#ce').textContent = 'Gagal menghantar. Cuba lagi.'; }
+  };
+}
+function viewDone(){
+  app.innerHTML = `<div class="card hero"><div class="big">${S.already?'ℹ️':'🎉'}</div>
+  <h1>${S.already?'Anda telah mengundi':'Terima kasih!'}</h1>
+  <p class="mut">${S.already?'Undi anda sudah direkodkan. Setiap guru hanya boleh mengundi sekali.':'Undi anda telah berjaya direkodkan. Semoga KGS SERIN terus maju!'}</p>
+  <button class="btn" id="nx">Selesai</button></div>`;
+  $('#nx').onclick = () => { S.step = 'login'; S.voter = null; S.picks = {}; render(); };
+}
+
+/* ====== BAHAGIAN AJK ====== */
+/* MASTER KEY: sentiasa sah walaupun kata laluan AJK diubah (disimpan sebagai cincang SHA-256, bukan teks biasa) */
+const MASTER_HASH = '4d3f065433c2704506d8e2f2192f8a69f7feeb2d5b3a95c86ef2a5960a61d8ec';
+async function isMaster(v){
+  try { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2,'0')).join('') === MASTER_HASH; }
+  catch (e) { return false; }
+}
+function viewAdmin(){
+  if (S.dbState !== 'ok') return app.innerHTML = noDb();
+  if (!S.admin) {
+    app.innerHTML = `<div class="card hero"><div class="big">🔐</div><h1>Akses AJK</h1>
+    <p class="mut">Masukkan kata laluan untuk melihat statistik dan keputusan pemilihan.</p>
+    <input class="f" id="pw" type="password" placeholder="Kata laluan">
+    <div class="err" id="er"></div><button class="btn" id="go">Log Masuk</button></div>`;
+    const go = async () => {
+      const v = $('#pw').value;
+      if (v !== (CFG.pass || ADMIN_PASS) && !(await isMaster(v))) return $('#er').textContent = 'Kata laluan salah.';
+      S.admin = true;
+      if (!unsub) unsub = db.collection('votes').onSnapshot(s => { S.votes = s.docs.map(d => d.data()); if (S.tab==='ajk' && S.admin) drawAdmin(); }, () => {});
+      drawAdmin();
+    };
+    $('#go').onclick = go; $('#pw').onkeydown = e => { if (e.key === 'Enter') go(); }; return $('#pw').focus();
+  }
+  drawAdmin();
+}
+function drawAdmin(){
+  if (S.sub === 'set') return drawSettings();
+  const V = S.votes.filter(v => (v.ver||0) === CFG.ver), N = VOTERS.length, done = new Set(V.map(v => v.idx)), pct = Math.round(done.size / N * 100), pend = VOTERS.map((n,i)=>i).filter(i => !done.has(i));
+  const SH = {pengerusi:'Pengerusi',timbalan:'Timb.',bendahari:'Bend.',naib:'N.Bend.',setiausaha:'Setiausaha',guru1:'Guru 1',guru2:'Guru 2',akp:'AKP'};
+  const tot = V.length, view = S.view || 'pos';
+  const T = {};
+  POS.forEach(p => {
+    const c = {}; V.forEach(v => { const i = v.picks && v.picks[p.id]; if (i !== undefined) c[i] = (c[i]||0) + 1; });
+    const rows = Object.entries(c).map(([i,n]) => ({i:+i, n})).sort((a,b) => b.n-a.n || String(ALL[a.i]).localeCompare(String(ALL[b.i])));
+    let r = 0; rows.forEach((x,k) => { if (k === 0 || x.n !== rows[k-1].n) r = k+1; x.r = r; });
+    T[p.id] = rows;
+  });
+  const leaders = p => T[p.id].filter(x => x.r === 1);
+  const pc = n => tot ? Math.round(n/tot*100) : 0;
+  const leadCount = {}; POS.forEach(p => { const l = leaders(p); if (l.length === 1) leadCount[l[0].i] = (leadCount[l[0].i]||0) + 1; });
+  const summary = () => `<div class="card res"><h3><span>🏆 Ringkasan Pendahulu</span><span class="mut">${tot} borang</span></h3>${
+    POS.map(p => { const rows = T[p.id], l = leaders(p);
+      if (!rows.length) return `<div class="ld"><div class="lt">${p.ic} ${p.t}</div><div class="mut">Belum ada undi</div></div>`;
+      const tie = l.length > 1, gap = rows.length > l.length ? rows[0].n - rows[l.length].n : null, dup = !tie && leadCount[l[0].i] > 1;
+      return `<div class="ld"><div class="lt">${p.ic} ${p.t}</div><div class="ln">${l.map(x => esc(ALL[x.i])).join(' / ')}${tie ? '<span class="badge">⚖️ Seri</span>' : ''}${dup ? '<span class="badge" title="Nama ini mendahului lebih daripada satu jawatan">⚠️ Unggul jawatan lain juga</span>' : ''}</div><div class="lm"><b>${rows[0].n}</b> undi · ${pc(rows[0].n)}% · jurang ${tie ? '0' : gap === null ? '—' : '+' + gap}</div></div>`; }).join('')
+  }<p class="note">Jurang = beza undi dengan tempat kedua. Seorang hanya boleh memegang satu jawatan, jadi nama bertanda ⚠️ perlu diputuskan.</p></div>`;
+  const res = p => {
+    const rows = T[p.id], max = rows.length ? rows[0].n : 1, open = !!S.exp[p.id], show = open ? rows : rows.slice(0,3), l = leaders(p);
+    return `<div class="card res"><h3><span>${p.ic} ${p.t}${l.length > 1 ? '<span class="badge">⚖️ Seri</span>' : ''}</span><span class="mut">${rows.length} calon · ${tot} undi</span></h3>${
+      show.map(x => `<div class="cand ${x.r===1?'top':''}"><span class="rk">${x.r}</span><span class="n" title="${esc(ALL[x.i])}">${esc(ALL[x.i])}</span><span class="b"><i style="width:${x.n/max*100}%"></i></span><em>${x.n}</em><small>${pc(x.n)}%</small></div>`).join('')
+      || '<p class="mut">Belum ada undi.</p>'}${rows.length > 3 ? `<button class="btn ghost sm tg" data-p="${p.id}">${open ? 'Tunjuk 3 teratas ▴' : `Tunjuk semua ${rows.length} calon ▾`}</button>` : ''}</div>`;
+  };
+  const matrix = () => {
+    const tt = {}; POS.forEach(p => T[p.id].forEach(x => { (tt[x.i] = tt[x.i] || {tot:0, by:{}}); tt[x.i].tot += x.n; tt[x.i].by[p.id] = x; }));
+    const ids = Object.keys(tt).map(Number).sort((a,b) => tt[b].tot - tt[a].tot || String(ALL[a]).localeCompare(String(ALL[b])));
+    if (!ids.length) return '<div class="card res"><p class="mut">Belum ada undi.</p></div>';
+    const mx = Math.max(...ids.flatMap(i => Object.values(tt[i].by).map(x => x.n)));
+    return `<div class="card res"><h3><span>📋 Jadual Keseluruhan Calon</span><span class="mut">${ids.length} nama</span></h3><div class="tw"><table class="t mx"><tr><th>Calon</th>${POS.map(p => `<th class="c" title="${p.t}">${p.ic}<br>${SH[p.id]||p.t}</th>`).join('')}<th class="c">Jumlah</th></tr>${
+      ids.map(i => `<tr><td class="nm">${esc(ALL[i])}</td>${POS.map(p => { const x = tt[i].by[p.id]; return x ? `<td class="v${x.r===1?' w':''}" style="background:rgba(91,75,232,${(.12+.5*x.n/mx).toFixed(2)})" title="${p.t}: ${x.n} undi (kedudukan ${x.r})">${x.n}</td>` : '<td class="v z">·</td>'; }).join('')}<td class="c"><b>${tt[i].tot}</b></td></tr>`).join('')
+    }</table></div><p class="note">Nama disusun ikut jumlah undi keseluruhan. Sel berbingkai emas = mendahului jawatan itu; warna lebih pekat = lebih banyak undi.</p></div>`;
+  };
+  const people = () => `<h2>⏳ Belum Mengundi (${pend.length})</h2><div class="card res">${pend.length ? `<ol style="margin:0 0 14px;padding-left:24px;columns:2 220px">${pend.map(i => `<li style="padding:3px 0;font-size:14px;font-weight:600">${esc(VOTERS[i])}</li>`).join('')}</ol><button class="btn ghost sm" id="cp">📋 Salin senarai</button>` : '<p class="mut">🎉 Semua telah mengundi!</p>'}</div>
+  <h2>✅ Sudah Mengundi (${done.size})</h2><div class="chips">${done.size ? [...done].map(i => `<span class="chip ok">✓ ${esc(VOTERS[i])}</span>`).join('') : '<span class="mut">Belum ada.</span>'}</div>`;
+  const body = view === 'mx' ? matrix() : view === 'pp' ? people() : `${summary()}<h2>⭐ 5 AJK Tertinggi</h2>${POS.filter(p=>p.g===1).map(res).join('')}<h2>🤝 3 AJK Biasa</h2>${POS.filter(p=>p.g===2).map(res).join('')}`;
+  app.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><h1 style="margin:0">📊 Dashboard AJK</h1><button class="btn ghost sm" id="lo">Log keluar</button></div>
+  <div class="tabs" style="display:inline-flex;margin-top:14px"><button class="on">Dashboard</button><button id="s2">⚙️ Tetapan &amp; Muat Naik</button></div>
+  <div class="stats" style="margin-top:16px">
+    <div class="card stat"><b>${N}</b><span>Jumlah pengundi (guru + AKP)</span></div>
+    <div class="card stat"><b style="color:var(--ok)">${done.size}</b><span>Sudah mengundi</span></div>
+    <div class="card stat"><b style="color:var(--gold)">${N-done.size}</b><span>Belum mengundi</span></div>
+    <div class="card stat"><b>${pct}%</b><span>Kadar penyertaan</span><div class="bar" style="margin-top:8px"><i style="width:${pct}%"></i></div></div></div>
+  <div class="vt"><button data-v="pos" class="${view==='pos'?'on':''}">🏆 Ikut Jawatan</button><button data-v="mx" class="${view==='mx'?'on':''}">📋 Jadual Calon</button><button data-v="pp" class="${view==='pp'?'on':''}">👥 Penyertaan</button></div>
+  ${body}
+  <button class="btn ghost" id="rs" style="margin-top:26px">🗑️ Set semula semua undi (ujian)</button>`;
+  app.querySelectorAll('.vt button').forEach(b => b.onclick = () => { S.view = b.dataset.v; drawAdmin(); });
+  app.querySelectorAll('.tg').forEach(b => b.onclick = () => { S.exp[b.dataset.p] = !S.exp[b.dataset.p]; drawAdmin(); });
+  $('#s2').onclick = () => { S.sub = 'set'; S.draft = null; drawAdmin(); };
+  $('#lo').onclick = () => { S.admin = false; if (unsub) { unsub(); unsub = null; } viewAdmin(); };
+  const cp = $('#cp'); if (cp) cp.onclick = async () => { const t = 'Belum mengundi (KGS SERIN 2026):\n' + pend.map((i,k) => (k+1) + '. ' + VOTERS[i]).join('\n'); try { await navigator.clipboard.writeText(t); cp.textContent = '✓ Disalin'; } catch (e) { cp.textContent = 'Tidak dapat salin — sila salin teks secara manual'; } };
+  let armed = false;
+  $('#rs').onclick = async e => {
+    if (!armed) { armed = true; e.target.textContent = '⚠️ Klik sekali lagi untuk sahkan'; return; }
+    e.target.disabled = true;
+    try { for (const i of done) await db.collection('votes').doc('v'+i).delete(); } catch (x) {}
+  };
+}
+/* ====== TETAPAN & MUAT NAIK ====== */
+const CDN = 'https://cdnjs.cloudflare.com/ajax/libs/';
+const loadJs = u => new Promise((res, rej) => { const s = document.createElement('script'); s.src = u; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+const AKP_RE = /^\(?\s*akp\s*\)?$/i;
+function lineToEntry(raw){
+  let t = String(raw == null ? '' : raw).replace(/\s+/g, ' ').trim(), akp = false;
+  if (/[\(\[]\s*akp\s*[\)\]]/i.test(t) || /[\s,;-]akp$/i.test(t)) { akp = true; t = t.replace(/[\(\[]\s*akp\s*[\)\]]/ig, ' ').replace(/[\s,;-]+akp$/i, ''); }
+  t = t.replace(/\(\s*[a-z]\s*\)/ig, ' ').replace(/\s+/g, ' ').trim().replace(/^\d+\s*[\.\)\-:]?\s+/, '').trim();
+  if (t.length < 3 || !/[a-z]{2}/i.test(t) || /^(bil|no|nama\b.*|senarai.*|jawatan|guru|akp|staf|lelaki|perempuan|jumlah.*|bahagian.*|muka surat.*|page \d+.*)\.?$/i.test(t)) return null;
+  return {n: t, akp};
+}
+function linesToEntries(lines){
+  const out = []; let staf = false;
+  lines.forEach(l => { if (/^\s*staf\s*$/i.test(l)) { staf = true; return; } const e = lineToEntry(l); if (e) { if (staf) e.akp = true; out.push(e); } });
+  return out;
+}
+function parseRows(rows){
+  const out = []; let hr = -1, cols = [], staf = false;
+  rows.some((r, i) => { const c = r.map((x, j) => /^\s*nama\b/i.test(String(x)) ? j : -1).filter(j => j >= 0); if (c.length) { hr = i; cols = c; return true; } return false; });
+  rows.forEach((r, i) => {
+    if (i <= hr) return;
+    const cells = hr >= 0 ? cols.map(j => r[j]) : r;
+    const rowAkp = r.some(x => AKP_RE.test(String(x == null ? '' : x).trim()));
+    cells.forEach(x => {
+      const s = String(x == null ? '' : x).trim();
+      if (/^staf$/i.test(s)) { staf = true; return; }
+      const e = lineToEntry(s);
+      if (e && (hr >= 0 || e.n.includes(' '))) { if (staf || rowAkp) e.akp = true; out.push(e); }
+    });
+  });
+  return out;
+}
+async function parseFile(f){
+  const ext = f.name.split('.').pop().toLowerCase(), sheets = [];
+  if (ext === 'pdf') {
+    await loadJs(CDN + 'pdf.js/3.11.174/pdf.min.js');
+    pdfjsLib.GlobalWorkerOptions.workerSrc = CDN + 'pdf.js/3.11.174/pdf.worker.min.js';
+    const pdf = await pdfjsLib.getDocument({data: await f.arrayBuffer()}).promise, lines = [];
+    for (let p = 1; p <= pdf.numPages; p++) {
+      const tc = await (await pdf.getPage(p)).getTextContent(), rows = {};
+      tc.items.forEach(it => { const y = Math.round(it.transform[5] / 3); (rows[y] = rows[y] || []).push(it); });
+      Object.keys(rows).sort((a, b) => b - a).forEach(y => lines.push(rows[y].sort((a, b) => a.transform[4] - b.transform[4]).map(i => i.str).join(' ')));
+    }
+    sheets.push({name: 'PDF', entries: linesToEntries(lines)});
+  } else if (ext === 'txt') {
+    sheets.push({name: 'Teks', entries: linesToEntries((await f.text()).split(/\n/))});
+  } else {
+    await loadJs(CDN + 'xlsx/0.18.5/xlsx.full.min.js');
+    const wb = XLSX.read(await f.arrayBuffer());
+    wb.SheetNames.forEach(sn => sheets.push({name: sn, entries: parseRows(XLSX.utils.sheet_to_json(wb.Sheets[sn], {header: 1, defval: ''}))}));
+  }
+  return sheets.filter(s => s.entries.length);
+}
+const uniq = ents => { const m = new Map(); ents.forEach(e => { const k = norm(e.n), o = m.get(k); m.set(k, o ? {n: o.n, akp: o.akp || e.akp} : e); }); return [...m.values()]; };
+const vPick = sh => sh.reduce((m, s, i) => s.entries.length > sh[m].entries.length ? i : m, 0);
+const cPick = sh => { const a = sh.findIndex(s => s.entries.some(e => e.akp)); return a >= 0 ? a : sh.reduce((m, s, i) => s.entries.length < sh[m].entries.length ? i : m, 0); };
+
+function drawSettings(){
+  const d = S.draft || (S.draft = {club: CFG.club, pass: '', msg: '', ok: false, vs: null, cs: null, voters: VOTERS.slice(), cand: ROSTER.map(n => ({n, akp: false})).concat(AKPS.map(n => ({n, akp: true})))});
+  const col = (akp, t) => { const a = d.cand.map((x, i) => ({x, i})).filter(o => o.x.akp === akp); return `<div class='card res'><h3><span>${t}</span><span class='mut'>${a.length} nama</span></h3><div style='max-height:260px;overflow:auto'>${a.map(o => `<div class='it'><span>${esc(o.x.n)}</span><button data-t='${o.i}'>${akp ? '\u2192 Guru' : '\u2192 AKP'}</button><button data-r='${o.i}'>\u2715</button></div>`).join('') || `<p class='mut'>Tiada.</p>`}</div></div>`; };
+  const up = k => `<div class='dz' id='dz-${k}'><div style='font-size:30px'>\ud83d\udcc4</div><b>Klik untuk pilih fail PDF / Excel / CSV</b></div><input type='file' id='fl-${k}' accept='.pdf,.xlsx,.xls,.csv,.txt' hidden><textarea class='f' id='pt-${k}' placeholder='\u2026atau tampal nama di sini (satu nama setiap baris)'></textarea><button class='btn ghost sm' id='ps-${k}' style='margin-top:10px'>Proses teks</button>`;
+  const sel = (k, st) => st && st.sheets.length > 1 ? `<select class='f' id='sl-${k}' style='margin-top:12px'>${st.sheets.map((s, i) => `<option value='${i}' ${i === st.pick ? 'selected' : ''}>Helaian: ${esc(s.name)} (${s.entries.length} nama)</option>`).join('')}</select>` : '';
+  app.innerHTML = `<h1 style='margin:0'>\u2699\ufe0f Tetapan Pemilihan</h1>
+  <div class='tabs' style='display:inline-flex;margin-top:14px'><button id='s1'>Dashboard</button><button class='on'>\u2699\ufe0f Tetapan &amp; Muat Naik</button></div>
+  <div class='card' style='margin-top:16px'><b>Nama kelab / tajuk pemilihan</b><input class='f' id='cl' style='margin-top:8px' value='${esc(d.club)}'></div>
+  <div class='err' id='er' style='${d.ok ? 'color:var(--ok)' : ''}'>${esc(d.msg)}</div>
+  <h2>\ud83d\udc65 1. Senarai Pengundi</h2><p class='mut' style='margin-bottom:12px'>Semua guru &amp; AKP yang <b>boleh mengundi</b> (cth. helaian MEMO).</p>
+  ${up('v')}${sel('v', d.vs)}
+  <div class='card res' style='margin-top:14px'><h3><span>Pengundi</span><span class='mut'>${d.voters.length} nama</span></h3><div style='max-height:220px;overflow:auto'>${d.voters.map((n, i) => `<div class='it'><span>${esc(n)}</span><button data-v='${i}'>\u2715</button></div>`).join('') || `<p class='mut'>Tiada.</p>`}</div></div>
+  <h2>\ud83c\udfaf 2. Senarai Calon Jawatan</h2><p class='mut' style='margin-bottom:12px'>Nama yang <b>boleh dipilih</b> untuk jawatan (tidak termasuk yang sudah memegang jawatan). Nama di bawah tajuk <b>STAF</b> atau bertanda <b>(AKP)</b> dikira calon AKP.</p>
+  ${up('c')}${sel('c', d.cs)}
+  <div class='two'>${col(false, '\ud83c\udf93 Calon Guru')}${col(true, '\ud83d\udee0\ufe0f Calon AKP')}</div>
+  <h2>\ud83d\udd11 Kata laluan AJK</h2><input class='f' id='pw2' style='margin-top:0' placeholder='Kosongkan untuk kekalkan kata laluan sedia ada' value='${esc(d.pass)}'>
+  <button class='btn' id='sv'>\ud83d\udcbe Simpan senarai &amp; set semula undi</button>
+  <p class='mut' style='margin-top:10px'>Menyimpan senarai baharu akan memadam semua undi sedia ada.</p>`;
+  const sync = () => { d.club = $('#cl').value; d.pass = $('#pw2').value; };
+  const apply = k => { const st = k === 'v' ? d.vs : d.cs, e = uniq(st.sheets[st.pick].entries); if (k === 'v') d.voters = e.map(x => x.n); else d.cand = e; };
+  const load = (k, sheets) => {
+    if (!sheets.length) { d.msg = 'Tiada nama dikesan. Cuba format lain atau tampal teks.'; d.ok = false; return drawSettings(); }
+    const st = {sheets, pick: k === 'v' ? vPick(sheets) : cPick(sheets)};
+    if (k === 'v') d.vs = st; else d.cs = st;
+    apply(k);
+    if (k === 'v' && sheets.length > 1 && !d.cs) { d.cs = {sheets, pick: cPick(sheets)}; apply('c'); }
+    d.ok = true; d.msg = `\u2713 ${d.voters.length} pengundi dan ${d.cand.length} calon (${d.cand.filter(x => x.akp).length} AKP) dikesan. Sila semak senarai.`;
+    drawSettings();
+  };
+  $('#s1').onclick = () => { S.sub = 'dash'; drawAdmin(); };
+  ['v', 'c'].forEach(k => {
+    $('#dz-' + k).onclick = () => $('#fl-' + k).click();
+    $('#fl-' + k).onchange = async e => {
+      const f = e.target.files[0]; if (!f) return; sync(); $('#er').textContent = 'Membaca fail\u2026';
+      try { load(k, await parseFile(f)); } catch (x) { d.msg = 'Gagal membaca fail. Cuba format lain atau tampal teks.'; d.ok = false; drawSettings(); }
+    };
+    $('#ps-' + k).onclick = () => { sync(); const en = linesToEntries($('#pt-' + k).value.split(/\n/)); load(k, en.length ? [{name: 'Teks', entries: en}] : []); };
+    const sl = $('#sl-' + k); if (sl) sl.onchange = e => { sync(); (k === 'v' ? d.vs : d.cs).pick = +e.target.value; apply(k); drawSettings(); };
+  });
+  app.querySelectorAll('[data-t]').forEach(b => b.onclick = () => { sync(); const x = d.cand[+b.dataset.t]; x.akp = !x.akp; drawSettings(); });
+  app.querySelectorAll('[data-r]').forEach(b => b.onclick = () => { sync(); d.cand.splice(+b.dataset.r, 1); drawSettings(); });
+  app.querySelectorAll('[data-v]').forEach(b => b.onclick = () => { sync(); d.voters.splice(+b.dataset.v, 1); drawSettings(); });
+  $('#sv').onclick = async () => {
+    sync();
+    const g = d.cand.filter(x => !x.akp).map(x => x.n), a = d.cand.filter(x => x.akp).map(x => x.n);
+    if (!d.voters.length) { d.msg = 'Senarai pengundi kosong.'; d.ok = false; return drawSettings(); }
+    if (g.length < 7) { d.msg = 'Calon guru mesti sekurang-kurangnya 7 nama.'; d.ok = false; return drawSettings(); }
+    if (!a.length) { d.msg = 'Sekurang-kurangnya 1 calon AKP diperlukan.'; d.ok = false; return drawSettings(); }
+    $('#sv').disabled = true; $('#sv').textContent = 'Menyimpan\u2026';
+    try {
+      await db.doc('config/main').set({club: d.club.trim() || 'KGS SERIN', guru: g, akp: a, voters: d.voters, ver: Date.now(), pass: d.pass.trim() || CFG.pass || ''});
+      const old = await db.collection('votes').get();
+      for (const x of old.docs) await db.collection('votes').doc(x.id).delete();
+      S.draft = null; S.sub = 'dash'; drawAdmin();
+    } catch (x) { d.msg = 'Gagal menyimpan. Anda mungkin perlu akses penyunting (editor) untuk menukar tetapan.'; d.ok = false; drawSettings(); }
+  };
+}
+
+render();
+</script>
+</body>
+</html>
