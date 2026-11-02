@@ -85,6 +85,7 @@ table.mx td.v{text-align:center;font-weight:700;min-width:46px}table.mx td.v.w{o
 .tg{margin-top:8px}.note{font-size:12.5px;color:var(--mut);margin:8px 2px 0}
 @media(max-width:520px){.cand{grid-template-columns:26px 1fr 30px 44px!important}.cand .b{grid-column:2/-1!important;order:5!important}}
 .ld{padding:10px 0;border-bottom:1px dashed var(--bd)}.ld:last-of-type{border-bottom:0}.lt{font-size:12px;color:var(--mut);font-weight:700}.ln{font-size:14.5px;font-weight:800;margin:2px 0;overflow-wrap:anywhere}.lm{font-size:12.5px;color:var(--mut);font-weight:600}.lm b{color:var(--tx)}
+.pr{display:grid;grid-template-columns:56px minmax(0,1fr) 130px 120px 44px;gap:8px;align-items:center;margin-bottom:8px}.pr .f{margin-top:0;padding:11px 12px;font-size:14px}.pr .pe{text-align:center;padding:11px 4px}.pr .btn{margin:0;padding:10px 0;width:100%}@media(max-width:640px){.pr{grid-template-columns:56px minmax(0,1fr) 44px;padding-bottom:10px;border-bottom:1px dashed var(--bd)}.pr .btn{grid-column:3;grid-row:1}.pr select:nth-of-type(1){grid-column:1/4;grid-row:2}.pr select:nth-of-type(2){grid-column:1/4;grid-row:3}}
 </style>
 </head>
 <body>
@@ -212,12 +213,14 @@ let VOTERS = [
 ];
 let ALL = ROSTER.concat(AKPS), CFG = {club:'KGS SERIN 2026', ver:0, pass:''};
 const isAkp = i => i >= ROSTER.length;
-const POS = [
+const DEFAULT_POS = [
 {id:'pengerusi',t:'Pengerusi',g:1,ic:'👑'},{id:'timbalan',t:'Timbalan Pengerusi',g:1,ic:'🥈'},
 {id:'bendahari',t:'Bendahari',g:1,ic:'💰'},{id:'naib',t:'Naib Bendahari',g:1,ic:'🪙'},
 {id:'setiausaha',t:'Setiausaha',g:1,ic:'📝'},
 {id:'guru1',t:'AJK Biasa (Guru) 1',g:2,ic:'🎓'},{id:'guru2',t:'AJK Biasa (Guru) 2',g:2,ic:'🎓'},
-{id:'akp',t:'AKP (Anggota Kumpulan Pelaksana)',g:2,ic:'🛠️'}];
+{id:'akp',t:'AKP 1 (Anggota Kumpulan Pelaksana)',g:2,ic:'🛠️',akp:true},{id:'akp2',t:'AKP 2 (Anggota Kumpulan Pelaksana)',g:2,ic:'🛠️',akp:true}];
+let POS = DEFAULT_POS.map(x => Object.assign({}, x));
+const gCount = g => POS.filter(p => p.g === g).length;
 
 /* ====== STATE ====== */
 const $ = s => document.querySelector(s), app = $('#app');
@@ -253,7 +256,7 @@ function applyCfg(c){
   if (sig === lastCfg) return; /* tiada perubahan sebenar: jangan lukis semula halaman (punca tulisan terpadam) */
   const first = lastCfg === null; lastCfg = sig;
   const old = CFG.ver;
-  if (c && c.guru) { ROSTER = c.guru; AKPS = c.akp || []; VOTERS = c.voters || c.guru.concat(c.akp || []); CFG = {club: c.club || 'KGS SERIN 2026', ver: c.ver || 0, pass: c.pass || ''}; }
+  if (c && c.guru) { ROSTER = c.guru; AKPS = c.akp || []; VOTERS = c.voters || c.guru.concat(c.akp || []); CFG = {club: c.club || 'KGS SERIN 2026', ver: c.ver || 0, pass: c.pass || ''}; POS = Array.isArray(c.pos) && c.pos.length ? c.pos : DEFAULT_POS.map(x => Object.assign({}, x)); }
   ALL = ROSTER.concat(AKPS); $('#club').textContent = CFG.club;
   if (CFG.ver !== old && S.step === 'ballot') { S.step = 'login'; S.voter = null; S.picks = {}; }
   const typing = document.activeElement && /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName) && app.contains(document.activeElement) && CFG.ver === old;
@@ -277,7 +280,7 @@ function noDb(){
 }
 function viewLogin(){
   app.innerHTML = `<div class="card hero"><div class="big">🗳️</div><h1>Pemilihan AJK Baharu</h1>
-  <p class="mut">Taip nama anda untuk mula mengundi. Anda perlu memilih <b>8 nama berbeza</b> bagi 8 jawatan.</p>
+  <p class="mut">Taip nama anda untuk mula mengundi. Anda perlu memilih <b>${POS.length} nama berbeza</b> bagi ${POS.length} jawatan.</p>
   <input class="f" id="nm" list="dl" placeholder="Taip nama anda (penuh atau pendek)…" autocomplete="off">
   <datalist id="dl">${VOTERS.map(n=>`<option value="${esc(n)}">`).join('')}</datalist>
   <div class="err" id="er">${esc(S.err)}</div><div id="sg" class="list" style="display:flex;flex-direction:column;gap:6px;text-align:left"></div>
@@ -309,11 +312,11 @@ function viewBallot(){
     <span style="min-width:0"><small>${p.t}</small><b>${has?esc(ALL[i]):'Pilih nama →'}</b></span></button>`;
   };
   app.innerHTML = `<div class="prog"><div class="card"><div style="font-size:13px"><span class="mut">Selamat datang,</span><br><b>${esc(VOTERS[S.voter])}</b></div>
-    <div class="bar"><i style="width:${n/8*100}%"></i></div><div class="cnt">${n}/8</div></div></div>
-  <h2>⭐ 5 AJK Tertinggi</h2><div class="grid">${POS.filter(p=>p.g===1).map(card).join('')}</div>
-  <h2>🤝 3 AJK Biasa</h2><div class="grid">${POS.filter(p=>p.g===2).map(card).join('')}</div>
+    <div class="bar"><i style="width:${n/POS.length*100}%"></i></div><div class="cnt">${n}/${POS.length}</div></div></div>
+  ${gCount(1) ? `<h2>⭐ ${gCount(1)} AJK Tertinggi</h2><div class="grid">${POS.filter(p=>p.g===1).map(card).join('')}</div>` : ''}
+  ${gCount(2) ? `<h2>🤝 ${gCount(2)} AJK Biasa</h2><div class="grid">${POS.filter(p=>p.g===2).map(card).join('')}</div>` : ''}
   <p class="mut" style="margin-top:18px">Nama yang telah dipilih akan hilang daripada senarai jawatan lain.</p>
-  <button class="btn" id="sub" ${n<8?'disabled':''}>${n<8?`Pilih ${8-n} lagi jawatan`:'Semak &amp; Hantar Undi ✓'}</button>
+  <button class="btn" id="sub" ${n<POS.length?'disabled':''}>${n<POS.length?`Pilih ${POS.length-n} lagi jawatan`:'Semak &amp; Hantar Undi ✓'}</button>
   <button class="btn ghost" id="out">Batal &amp; keluar</button>`;
   app.querySelectorAll('.pos').forEach(b => b.onclick = () => openPicker(b.dataset.p));
   $('#sub').onclick = openConfirm;
@@ -325,7 +328,7 @@ $('#ov').onclick = e => { if (e.target.id === 'ov') closeSheet(); };
 
 function openPicker(pid){
   const p = POS.find(x => x.id === pid), cur = S.picks[pid], used = chosen().filter(i => i !== cur);
-  const pool = ALL.map((n,i)=>i).filter(i => (pid === 'akp') === isAkp(i) && !used.includes(i));
+  const pool = ALL.map((n,i)=>i).filter(i => !!(p.akp || pid === 'akp') === isAkp(i) && !used.includes(i));
   openSheet(`<div style="display:flex;justify-content:space-between;align-items:center"><div><small class="mut">Pilih untuk jawatan</small><div style="font-weight:800;font-size:18px">${p.ic} ${p.t}</div></div>
     <button class="btn ghost sm" id="x">Tutup</button></div>
     <input class="f" id="q" placeholder="Cari nama…" style="margin-top:12px"><div class="list" id="ls"></div>`);
@@ -391,7 +394,7 @@ function viewAdmin(){
 function drawAdmin(){
   if (S.sub === 'set') return drawSettings();
   const V = S.votes.filter(v => (v.ver||0) === CFG.ver), N = VOTERS.length, done = new Set(V.map(v => v.idx)), pct = Math.round(done.size / N * 100), pend = VOTERS.map((n,i)=>i).filter(i => !done.has(i));
-  const SH = {pengerusi:'Pengerusi',timbalan:'Timb.',bendahari:'Bend.',naib:'N.Bend.',setiausaha:'Setiausaha',guru1:'Guru 1',guru2:'Guru 2',akp:'AKP'};
+  const SH0 = {pengerusi:'Pengerusi',timbalan:'Timb.',bendahari:'Bend.',naib:'N.Bend.',setiausaha:'Setiausaha',guru1:'Guru 1',guru2:'Guru 2',akp:'AKP 1',akp2:'AKP 2'}, SH = new Proxy({}, {get: (o, k) => { const q = POS.find(x => x.id === k); return SH0[k] || (q ? (q.t.length > 11 ? q.t.slice(0,10) + '…' : q.t) : k); }});
   const tot = V.length, view = S.view || 'pos';
   const T = {};
   POS.forEach(p => {
@@ -426,7 +429,7 @@ function drawAdmin(){
   };
   const people = () => `<h2>⏳ Belum Mengundi (${pend.length})</h2><div class="card res">${pend.length ? `<ol style="margin:0 0 14px;padding-left:24px;columns:2 220px">${pend.map(i => `<li style="padding:3px 0;font-size:14px;font-weight:600">${esc(VOTERS[i])}</li>`).join('')}</ol><button class="btn ghost sm" id="cp">📋 Salin senarai</button>` : '<p class="mut">🎉 Semua telah mengundi!</p>'}</div>
   <h2>✅ Sudah Mengundi (${done.size})</h2><div class="chips">${done.size ? [...done].map(i => `<span class="chip ok">✓ ${esc(VOTERS[i])}</span>`).join('') : '<span class="mut">Belum ada.</span>'}</div>`;
-  const body = view === 'mx' ? matrix() : view === 'pp' ? people() : `${summary()}<h2>⭐ 5 AJK Tertinggi</h2>${POS.filter(p=>p.g===1).map(res).join('')}<h2>🤝 3 AJK Biasa</h2>${POS.filter(p=>p.g===2).map(res).join('')}`;
+  const body = view === 'mx' ? matrix() : view === 'pp' ? people() : `${summary()}${gCount(1) ? `<h2>⭐ ${gCount(1)} AJK Tertinggi</h2>${POS.filter(p=>p.g===1).map(res).join('')}` : ''}${gCount(2) ? `<h2>🤝 ${gCount(2)} AJK Biasa</h2>${POS.filter(p=>p.g===2).map(res).join('')}` : ''}`;
   app.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><h1 style="margin:0">📊 Dashboard AJK</h1><button class="btn ghost sm" id="lo">Log keluar</button></div>
   <div class="tabs" style="display:inline-flex;margin-top:14px"><button class="on">Dashboard</button><button id="s2">⚙️ Tetapan &amp; Muat Naik</button></div>
   <div class="stats" style="margin-top:16px">
@@ -507,13 +510,17 @@ const vPick = sh => sh.reduce((m, s, i) => s.entries.length > sh[m].entries.leng
 const cPick = sh => { const a = sh.findIndex(s => s.entries.some(e => e.akp)); return a >= 0 ? a : sh.reduce((m, s, i) => s.entries.length < sh[m].entries.length ? i : m, 0); };
 
 function drawSettings(){
-  const d = S.draft || (S.draft = {club: CFG.club, pass: '', msg: '', ok: false, vs: null, cs: null, voters: VOTERS.slice(), cand: ROSTER.map(n => ({n, akp: false})).concat(AKPS.map(n => ({n, akp: true})))});
+  const d = S.draft || (S.draft = {pos: POS.map(x => Object.assign({}, x)), club: CFG.club, pass: '', msg: '', ok: false, vs: null, cs: null, voters: VOTERS.slice(), cand: ROSTER.map(n => ({n, akp: false})).concat(AKPS.map(n => ({n, akp: true})))});
   const col = (akp, t) => { const a = d.cand.map((x, i) => ({x, i})).filter(o => o.x.akp === akp); return `<div class='card res'><h3><span>${t}</span><span class='mut'>${a.length} nama</span></h3><div style='max-height:260px;overflow:auto'>${a.map(o => `<div class='it'><span>${esc(o.x.n)}</span><button data-t='${o.i}'>${akp ? '\u2192 Guru' : '\u2192 AKP'}</button><button data-r='${o.i}'>\u2715</button></div>`).join('') || `<p class='mut'>Tiada.</p>`}</div></div>`; };
   const up = k => `<div class='dz' id='dz-${k}'><div style='font-size:30px'>\ud83d\udcc4</div><b>Klik untuk pilih fail PDF / Excel / CSV</b></div><input type='file' id='fl-${k}' accept='.pdf,.xlsx,.xls,.csv,.txt' hidden><textarea class='f' id='pt-${k}' placeholder='\u2026atau tampal nama di sini (satu nama setiap baris)'></textarea><button class='btn ghost sm' id='ps-${k}' style='margin-top:10px'>Proses teks</button>`;
   const sel = (k, st) => st && st.sheets.length > 1 ? `<select class='f' id='sl-${k}' style='margin-top:12px'>${st.sheets.map((s, i) => `<option value='${i}' ${i === st.pick ? 'selected' : ''}>Helaian: ${esc(s.name)} (${s.entries.length} nama)</option>`).join('')}</select>` : '';
   app.innerHTML = `<h1 style='margin:0'>\u2699\ufe0f Tetapan Pemilihan</h1>
   <div class='tabs' style='display:inline-flex;margin-top:14px'><button id='s1'>Dashboard</button><button class='on'>\u2699\ufe0f Tetapan &amp; Muat Naik</button></div>
   <div class='card' style='margin-top:16px'><b>Nama kelab / tajuk pemilihan</b><input class='f' id='cl' style='margin-top:8px' value='${esc(d.club)}'></div>
+  <h2>\ud83c\udfaf Jawatan Pemilihan</h2><p class='mut' style='margin-bottom:12px'>Tambah, ubah atau buang jawatan. Setiap jawatan boleh dimasukkan dalam kumpulan <b>Tertinggi</b> atau <b>Biasa</b>, dan calonnya diambil daripada senarai <b>Guru</b> atau <b>AKP</b>.</p>
+  <div class='card res' id='pcard'>${d.pos.map((q, i) => `<div class='pr'><input class='f pe' data-pi='${i}' data-k='ic' value='${esc(q.ic || '')}' maxlength='4' aria-label='Ikon'><input class='f pt' data-pi='${i}' data-k='t' value='${esc(q.t)}' placeholder='Nama jawatan' aria-label='Nama jawatan'><select class='f ps' data-pi='${i}' data-k='g' aria-label='Kumpulan'><option value='1' ${q.g === 1 ? 'selected' : ''}>\u2b50 Tertinggi</option><option value='2' ${q.g === 2 ? 'selected' : ''}>\ud83e\udd1d Biasa</option></select><select class='f ps' data-pi='${i}' data-k='akp' aria-label='Sumber calon'><option value='0' ${!q.akp ? 'selected' : ''}>Calon Guru</option><option value='1' ${q.akp ? 'selected' : ''}>Calon AKP</option></select><button class='btn ghost sm' data-pd='${i}' title='Buang jawatan'>\u2715</button></div>`).join('') || `<p class='mut'>Tiada jawatan.</p>`}
+  <div style='display:flex;gap:8px;flex-wrap:wrap;margin-top:12px'><button class='btn ghost sm' id='pa'>+ Tambah jawatan</button><button class='btn sm' id='ps' style='width:auto'>\ud83d\udcbe Simpan jawatan</button></div>
+  <p class='mut' style='margin-top:10px;font-size:12.5px'>Jumlah: <b>${d.pos.length}</b> jawatan (${d.pos.filter(q => q.g === 1).length} tertinggi, ${d.pos.filter(q => q.g === 2).length} biasa). Menyimpan jawatan akan <b>memadam semua undi sedia ada</b> supaya undian seragam.</p></div>
   <div class='err' id='er' style='${d.ok ? 'color:var(--ok)' : ''}'>${esc(d.msg)}</div>
   <h2>\ud83d\udc65 1. Senarai Pengundi</h2><p class='mut' style='margin-bottom:12px'>Semua guru &amp; AKP yang <b>boleh mengundi</b> (cth. helaian MEMO).</p>
   ${up('v')}${sel('v', d.vs)}
@@ -525,6 +532,28 @@ function drawSettings(){
   <button class='btn' id='sv'>\ud83d\udcbe Simpan senarai &amp; set semula undi</button>
   <p class='mut' style='margin-top:10px'>Menyimpan senarai baharu akan memadam semua undi sedia ada.</p>`;
   const sync = () => { d.club = $('#cl').value; d.pass = $('#pw2').value; };
+  app.querySelectorAll('[data-pi]').forEach(el => el.onchange = el.oninput = () => { const q = d.pos[+el.dataset.pi], k = el.dataset.k; q[k] = k === 'g' ? +el.value : k === 'akp' ? el.value === '1' : el.value; if (el.tagName === 'SELECT') { sync(); drawSettings(); } });
+  app.querySelectorAll('[data-pd]').forEach(b => b.onclick = () => { sync(); d.pos.splice(+b.dataset.pd, 1); d.msg = ''; drawSettings(); });
+  $('#pa').onclick = () => { sync(); d.pos.push({id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), t: 'Jawatan baharu', g: 2, ic: '\ud83c\udf93', akp: false}); d.msg = ''; drawSettings(); };
+  let parm = false;
+  $('#ps').onclick = async e => {
+    sync();
+    const P = d.pos.map(q => ({id: q.id, t: String(q.t).trim(), g: q.g === 1 ? 1 : 2, ic: String(q.ic || '').trim() || '\ud83c\udf93', akp: !!q.akp}));
+    const bad = m => { parm = false; d.msg = m; d.ok = false; drawSettings(); };
+    if (!P.length) return bad('Sekurang-kurangnya 1 jawatan diperlukan.');
+    if (P.some(q => !q.t)) return bad('Setiap jawatan mesti ada nama.');
+    const ng = P.filter(q => !q.akp).length, na = P.filter(q => q.akp).length;
+    if (ng > ROSTER.length) return bad(`Jawatan calon Guru (${ng}) melebihi bilangan calon Guru (${ROSTER.length}).`);
+    if (na > AKPS.length) return bad(`Jawatan calon AKP (${na}) melebihi bilangan calon AKP (${AKPS.length}).`);
+    if (!parm) { parm = true; e.target.textContent = '\u26a0\ufe0f Klik sekali lagi \u2014 semua undi akan dipadam'; return; }
+    e.target.disabled = true; e.target.textContent = 'Menyimpan\u2026';
+    try {
+      await db.doc('config/main').set({club: CFG.club, guru: ROSTER, akp: AKPS, voters: VOTERS, ver: Date.now(), pass: CFG.pass || '', pos: P});
+      const old = await db.collection('votes').get();
+      for (const x of old.docs) await db.collection('votes').doc(x.id).delete();
+      S.draft = null; S.sub = 'dash'; S.exp = {}; drawAdmin();
+    } catch (x) { bad('Gagal menyimpan. Anda mungkin perlu akses penyunting (editor) untuk menukar tetapan.'); }
+  };
   const apply = k => { const st = k === 'v' ? d.vs : d.cs, e = uniq(st.sheets[st.pick].entries); if (k === 'v') d.voters = e.map(x => x.n); else d.cand = e; };
   const load = (k, sheets) => {
     if (!sheets.length) { d.msg = 'Tiada nama dikesan. Cuba format lain atau tampal teks.'; d.ok = false; return drawSettings(); }
@@ -556,7 +585,7 @@ function drawSettings(){
     if (!a.length) { d.msg = 'Sekurang-kurangnya 1 calon AKP diperlukan.'; d.ok = false; return drawSettings(); }
     $('#sv').disabled = true; $('#sv').textContent = 'Menyimpan\u2026';
     try {
-      await db.doc('config/main').set({club: d.club.trim() || 'KGS SERIN', guru: g, akp: a, voters: d.voters, ver: Date.now(), pass: d.pass.trim() || CFG.pass || ''});
+      await db.doc('config/main').set({club: d.club.trim() || 'KGS SERIN', guru: g, akp: a, voters: d.voters, ver: Date.now(), pass: d.pass.trim() || CFG.pass || '', pos: POS});
       const old = await db.collection('votes').get();
       for (const x of old.docs) await db.collection('votes').doc(x.id).delete();
       S.draft = null; S.sub = 'dash'; drawAdmin();
