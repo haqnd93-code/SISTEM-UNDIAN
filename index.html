@@ -98,8 +98,9 @@ table.mx td.v{text-align:center;font-weight:700;min-width:46px}table.mx td.v.w{o
 </div>
 <div class="ov" id="ov"><div class="sheet" id="sheet"></div></div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.17.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.17.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore-compat.js"></script>
 <script>
 /* ====== TETAPAN ====== */
 const ADMIN_PASS = "SERIN2026"; // tukar kata laluan AJK di sini
@@ -241,18 +242,24 @@ const firebaseConfig = {
   appId: "1:54694111791:web:242b59905452a1bdebb4da",
   measurementId: "G-98TSE55EDP"
 };
+let AUTH_ERR = '';
 (async () => {
-  const t = setTimeout(() => { if (!db) { S.dbState = 'fail'; render(); } }, 10000);
+  const t = setTimeout(() => { if (S.dbState === 'wait') { S.dbState = 'fail'; render(); } }, 12000);
   try {
     if (!window.firebase) throw new Error('Firebase SDK tidak dimuatkan');
-    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-    db = firebase.firestore();
+    const fbApp = firebase.apps.length ? firebase.app() : firebase.initializeApp(firebaseConfig);
+    db = fbApp.firestore();
   } catch (e) { console.error(e); db = null; }
+  /* Log masuk anonim (sama seperti sistem lain anda): diperlukan jika Rules menggunakan request.auth != null */
+  if (db && firebase.auth) {
+    try { await firebase.auth().signInAnonymously(); }
+    catch (e) { console.error('Auth anonim gagal:', e); AUTH_ERR = (e && e.code) || 'auth/error'; }
+  }
   clearTimeout(t);
   S.dbState = db ? 'ok' : 'fail';
   if (db) db.doc('config/main').onSnapshot(
     s => applyCfg(s.exists ? s.data() : null),
-    err => console.error('Firestore:', err)
+    err => { console.error('Firestore:', err); S.dbState = 'fail'; S.dbErr = AUTH_ERR || (err && err.code) || 'unknown'; render(); }
   );
   render();
 })();
@@ -281,8 +288,14 @@ function viewGuru(){
   viewBallot();
 }
 function noDb(){
-  return `<div class="card hero"><div class="big">${S.dbState==='wait'?'⏳':'🔒'}</div><h1>${S.dbState==='wait'?'Menyambung…':'Sambungan tidak tersedia'}</h1>
-  <p class="mut">${S.dbState==='wait'?'Sila tunggu sebentar.':'Sila buka sistem ini melalui pautan yang dikongsi oleh AJK dan log masuk ke akaun anda.'}</p></div>`;
+  if (S.dbState === 'wait') return `<div class="card hero"><div class="big">\u23f3</div><h1>Menyambung\u2026</h1><p class="mut">Sila tunggu sebentar.</p></div>`;
+  const c = S.dbErr || '', hint = (c === 'auth/operation-not-allowed' || c === 'auth/admin-restricted-operation') ? 'Log masuk Anonymous belum dihidupkan. Di Firebase Console \u2192 Authentication \u2192 Sign-in method \u2192 Anonymous \u2192 Enable.'
+    : c === 'auth/unauthorized-domain' ? 'Domain ini belum dibenarkan. Di Firebase Console \u2192 Authentication \u2192 Settings \u2192 Authorized domains, tambah domain hosting anda.'
+    : c === 'permission-denied' ? 'Firestore Rules menolak akses. Di Firebase Console \u2192 Firestore Database \u2192 Rules, benarkan baca/tulis pada <b>config</b> dan <b>votes</b>, kemudian Publish.'
+    : (c === 'not-found' || c === 'failed-precondition') ? 'Pangkalan data Firestore belum dibuat. Di Firebase Console \u2192 Build \u2192 Firestore Database \u2192 Create database.'
+    : (c === 'unavailable' || c === 'deadline-exceeded') ? 'Tiada sambungan ke Firestore. Semak internet atau cuba rangkaian lain.'
+    : 'Tidak dapat menyambung ke Firestore. Semak sambungan internet dan tetapan Firebase.';
+  return `<div class="card hero"><div class="big">\ud83d\udd12</div><h1>Sambungan tidak tersedia</h1><p class="mut">${hint}</p>${c ? `<p class="mut" style="margin-top:10px;font-size:12px">Kod ralat: ${esc(c)}</p>` : ''}</div>`;
 }
 function viewLogin(){
   app.innerHTML = `<div class="card hero"><div class="big">🗳️</div><h1>Pemilihan AJK Baharu</h1>
@@ -302,7 +315,7 @@ function viewLogin(){
     try {
       const snap = await db.collection('votes').doc('v'+m[0]).get();
       if (snap.exists && (snap.data().ver||0) === CFG.ver) { S.voter = m[0]; S.step = 'done'; S.already = true; return render(); }
-    } catch (e) { $('#go').disabled = false; return fail('Ralat sambungan. Cuba lagi.'); }
+    } catch (e) { $('#go').disabled = false; return fail('Ralat sambungan (' + ((e && e.code) || 'ralat') + '). Cuba lagi.'); }
     S.voter = m[0]; S.picks = {}; S.step = 'ballot'; S.already = false; S.err = ''; render();
   };
   const fail = m => { $('#er').textContent = m; };
@@ -361,7 +374,7 @@ function openConfirm(){
       if ((s => s.exists && (s.data().ver||0) === CFG.ver)(await ref.get())) { S.step = 'done'; S.already = true; return render(); }
       await ref.set({voter: VOTERS[S.voter], idx: S.voter, picks: S.picks, ts: Date.now(), ver: CFG.ver});
       S.step = 'done'; S.already = false; render();
-    } catch (e) { $('#ok').disabled = false; $('#ok').textContent = 'Hantar Undi'; $('#ce').textContent = 'Gagal menghantar. Cuba lagi.'; }
+    } catch (e) { $('#ok').disabled = false; $('#ok').textContent = 'Hantar Undi'; $('#ce').textContent = 'Gagal menghantar (' + ((e && e.code) || 'ralat') + '). Cuba lagi.'; }
   };
 }
 function viewDone(){
