@@ -94,11 +94,12 @@ table.mx td.v{text-align:center;font-weight:700;min-width:46px}table.mx td.v.w{o
     <div class="brand"><div class="logo">🗳️</div><div><b id="club">KGS SERIN 2026</b><span>Kelab Guru &amp; Staf · Pemilihan AJK</span></div></div>
     <div class="tabs"><button id="t-guru" class="on">Bahagian Guru</button><button id="t-ajk">AJK</button></div>
   </header>
-  <div id="mode" style="display:none;font-size:12.5px;font-weight:600;color:var(--mut);margin:-8px 0 16px"></div>
   <main id="app"></main>
 </div>
 <div class="ov" id="ov"><div class="sheet" id="sheet"></div></div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
 /* ====== TETAPAN ====== */
 const ADMIN_PASS = "SERIN2026"; // tukar kata laluan AJK di sini
@@ -231,26 +232,31 @@ const norm = s => s.toLowerCase().replace(/\b(en|pn|cik|dr|encik|puan|cikgu|tuan
 const ini = n => n.replace(/^(En|Pn|Cik|Dr)\.\s*/,'').split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();
 const av = (i, n) => `<span class="av" style="background:hsl(${(i*47)%360} 62% 50%)">${ini(n)}</span>`;
 
+/* ====== FIREBASE / FIRESTORE (data dikongsi masa nyata antara semua peranti) ====== */
+const firebaseConfig = {
+  apiKey: "AIzaSyB1H0rCTJHbA0YeO60Nj3k_NDk7C2wBpdw",
+  authDomain: "sistem-undian-16579.firebaseapp.com",
+  projectId: "sistem-undian-16579",
+  messagingSenderId: "54694111791",
+  appId: "1:54694111791:web:242b59905452a1bdebb4da",
+  measurementId: "G-98TSE55EDP"
+};
 (async () => {
   const t = setTimeout(() => { if (!db) { S.dbState = 'fail'; render(); } }, 10000);
-  if (!window.claude) { db = localDb(); const mo = $('#mode'); mo.textContent = '\ud83d\udcbe Mod luar talian: data disimpan pada peranti ini sahaja.'; mo.style.display = 'block'; }
-  else { try { db = await window.claude.use("db"); } catch (e) { db = null; } }
+  try {
+    if (!window.firebase) throw new Error('Firebase SDK tidak dimuatkan');
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+  } catch (e) { console.error(e); db = null; }
   clearTimeout(t);
   S.dbState = db ? 'ok' : 'fail';
-  if (db) db.doc('config/main').onSnapshot(s => applyCfg(s.exists ? s.data() : null), () => {});
+  if (db) db.doc('config/main').onSnapshot(
+    s => applyCfg(s.exists ? s.data() : null),
+    err => console.error('Firestore:', err)
+  );
   render();
 })();
 
-function localDb(){
-  const K = 'kgs_serin_db', rd = () => { try { return JSON.parse(localStorage.getItem(K) || '{}'); } catch (e) { return {}; } }, wr = o => localStorage.setItem(K, JSON.stringify(o)), subs = [];
-  const fire = () => subs.slice().forEach(f => f()), snap = (p, d) => ({id: p.split('/').pop(), exists: d !== undefined, data: () => d});
-  const watch = (f, fn) => { const g = () => fn(f()); subs.push(g); g(); return () => { const i = subs.indexOf(g); if (i >= 0) subs.splice(i, 1); }; };
-  const doc = p => ({id: p.split('/').pop(), path: p, get: async () => snap(p, rd()[p]),
-    set: async d => { const o = rd(); o[p] = d; wr(o); fire(); }, delete: async () => { const o = rd(); delete o[p]; wr(o); fire(); },
-    onSnapshot: fn => watch(() => snap(p, rd()[p]), fn)});
-  const qs = p => { const o = rd(); return {docs: Object.keys(o).filter(k => k.startsWith(p + '/') && !k.slice(p.length + 1).includes('/')).map(k => snap(k, o[k]))}; };
-  return {doc, collection: p => ({doc: id => doc(p + '/' + id), get: async () => qs(p), onSnapshot: fn => watch(() => qs(p), fn)})};
-}
 function applyCfg(c){
   const sig = JSON.stringify(c || null);
   if (sig === lastCfg) return; /* tiada perubahan sebenar: jangan lukis semula halaman (punca tulisan terpadam) */
