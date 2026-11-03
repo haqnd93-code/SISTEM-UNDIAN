@@ -446,8 +446,14 @@ function drawAdmin(){
       ids.map(i => `<tr><td class="nm">${esc(ALL[i])}</td>${POS.map(p => { const x = tt[i].by[p.id]; return x ? `<td class="v${x.r===1?' w':''}" style="background:rgba(91,75,232,${(.12+.5*x.n/mx).toFixed(2)})" title="${p.t}: ${x.n} undi (kedudukan ${x.r})">${x.n}</td>` : '<td class="v z">·</td>'; }).join('')}<td class="c"><b>${tt[i].tot}</b></td></tr>`).join('')
     }</table></div><p class="note">Nama disusun ikut jumlah undi keseluruhan. Sel berbingkai emas = mendahului jawatan itu; warna lebih pekat = lebih banyak undi.</p></div>`;
   };
+  const byIdx = {}; V.forEach(v => { byIdx[v.idx] = v; });
+  const logs = S.votes.filter(v => v.log && v.lid).sort((a, b) => (b.resetTs || 0) - (a.resetTs || 0));
+  const picksOf = v => v && v.picks ? `<div style="margin-top:8px">${POS.map(p => `<div class="sum"><span>${p.ic} ${esc(p.t)}</span><b>${v.picks[p.id] !== undefined && ALL[v.picks[p.id]] !== undefined ? esc(ALL[v.picks[p.id]]) : '—'}</b></div>`).join('')}</div>` : '';
   const people = () => `<h2>⏳ Belum Mengundi (${pend.length})</h2><div class="card res">${pend.length ? `<ol style="margin:0 0 14px;padding-left:24px;columns:2 220px">${pend.map(i => `<li style="padding:3px 0;font-size:14px;font-weight:600">${esc(VOTERS[i])}</li>`).join('')}</ol><button class="btn ghost sm" id="cp">📋 Salin senarai</button>` : '<p class="mut">🎉 Semua telah mengundi!</p>'}</div>
-  <h2>✅ Sudah Mengundi (${done.size})</h2><div class="chips">${done.size ? [...done].map(i => `<span class="chip ok">✓ ${esc(VOTERS[i])}</span>`).join('') : '<span class="mut">Belum ada.</span>'}</div>`;
+  <h2>✅ Sudah Mengundi (${done.size})</h2>
+  <p class="note" style="margin:-6px 2px 10px">Jika seseorang sebenarnya belum mengundi tetapi sistem merekodkan sudah mengundi, sahkan dahulu dengan individu itu, kemudian tekan <b>Benarkan undi semula</b>. Undi lama dibatalkan sepenuhnya dan disimpan dalam sejarah di bawah.</p>
+  <div class="card res">${done.size ? [...done].sort((a,b) => a-b).map(i => { const v = byIdx[i], open = !!S.exp['vw:' + i]; return `<div class="ld"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between"><div><div class="ln">✓ ${esc(VOTERS[i])}</div><div class="lm">${v && v.ts ? 'Mengundi: ' + esc(new Date(v.ts).toLocaleString('ms-MY')) : ''}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn ghost sm" data-vw="${i}">${open ? '🙈 Sembunyi undi' : '👁 Lihat undi'}</button><button class="btn ghost sm" data-rv="${i}">↩ Benarkan undi semula</button></div></div>${open ? picksOf(v) : ''}</div>`; }).join('') : '<p class="mut">Belum ada.</p>'}</div>
+  ${logs.length ? `<h2>🕘 Sejarah Undi Dibatalkan (${logs.length})</h2><div class="card res">${logs.map(v => { const open = !!S.exp['lw:' + v.lid]; return `<div class="ld"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between"><div><div class="ln">${esc(v.voter || VOTERS[v.idx] || '?')}</div><div class="lm">Mengundi: ${esc(new Date(v.ts).toLocaleString('ms-MY'))} · Dibatalkan: <b>${esc(new Date(v.resetTs).toLocaleString('ms-MY'))}</b></div></div><button class="btn ghost sm" data-lw="${esc(v.lid)}">${open ? '🙈 Sembunyi' : '👁 Lihat undi lama'}</button></div>${open ? picksOf(v) : ''}</div>`; }).join('')}</div>` : ''}`;
   const body = view === 'mx' ? matrix() : view === 'pp' ? people() : `${summary()}${gCount(1) ? `<h2>⭐ ${gCount(1)} AJK Tertinggi</h2>${POS.filter(p=>p.g===1).map(res).join('')}` : ''}${gCount(2) ? `<h2>🤝 ${gCount(2)} AJK Biasa</h2>${POS.filter(p=>p.g===2).map(res).join('')}` : ''}`;
   app.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><h1 style="margin:0">📊 Dashboard AJK</h1><button class="btn ghost sm" id="lo">Log keluar</button></div>
   <div class="tabs" style="display:inline-flex;margin-top:14px"><button class="on">Dashboard</button><button id="s2">⚙️ Tetapan &amp; Muat Naik</button></div>
@@ -463,6 +469,21 @@ function drawAdmin(){
   app.querySelectorAll('.tg').forEach(b => b.onclick = () => { S.exp[b.dataset.p] = !S.exp[b.dataset.p]; drawAdmin(); });
   $('#s2').onclick = () => { S.sub = 'set'; S.draft = null; drawAdmin(); };
   $('#lo').onclick = () => { S.admin = false; if (unsub) { unsub(); unsub = null; } viewAdmin(); };
+  app.querySelectorAll('[data-vw]').forEach(b => b.onclick = () => { const k = 'vw:' + b.dataset.vw; S.exp[k] = !S.exp[k]; drawAdmin(); });
+  app.querySelectorAll('[data-lw]').forEach(b => b.onclick = () => { const k = 'lw:' + b.dataset.lw; S.exp[k] = !S.exp[k]; drawAdmin(); });
+  app.querySelectorAll('[data-rv]').forEach(b => { let arm = false; b.onclick = async () => {
+    if (!arm) { arm = true; b.textContent = '\u26a0\ufe0f Sahkan: batalkan undi & benarkan semula'; return; }
+    b.disabled = true; b.textContent = 'Memproses\u2026';
+    try {
+      const i = +b.dataset.rv, ref = db.collection('votes').doc('v' + i), snap = await ref.get();
+      if (snap.exists) {
+        const d0 = snap.data(), lid = 'log_' + Date.now() + '_' + i, batch = db.batch();
+        batch.set(db.collection('votes').doc(lid), Object.assign({}, d0, {log: true, lid, ver: -1, origVer: d0.ver || 0, resetTs: Date.now()}));
+        batch.delete(ref);
+        await batch.commit();
+      }
+    } catch (x) { arm = false; b.disabled = false; b.textContent = 'Gagal (' + ((x && x.code) || 'ralat') + ') \u2014 cuba lagi'; }
+  }; });
   const cp = $('#cp'); if (cp) cp.onclick = async () => { const t = 'Belum mengundi (KGS SERIN 2026):\n' + pend.map((i,k) => (k+1) + '. ' + VOTERS[i]).join('\n'); try { await navigator.clipboard.writeText(t); cp.textContent = '✓ Disalin'; } catch (e) { cp.textContent = 'Tidak dapat salin — sila salin teks secara manual'; } };
   let armed = false;
   $('#rs').onclick = async e => {
@@ -536,6 +557,7 @@ function drawSettings(){
   app.innerHTML = `<h1 style='margin:0'>\u2699\ufe0f Tetapan Pemilihan</h1>
   <div class='tabs' style='display:inline-flex;margin-top:14px'><button id='s1'>Dashboard</button><button class='on'>\u2699\ufe0f Tetapan &amp; Muat Naik</button></div>
   <div class='card' style='margin-top:16px'><b>Nama kelab / tajuk pemilihan</b><input class='f' id='cl' style='margin-top:8px' value='${esc(d.club)}'></div>
+  <div class='card' style='margin-top:16px'><b>\ud83d\udd11 Kata laluan AJK</b><p class='mut' style='margin-top:4px;font-size:13px'>Ditukar secara berasingan. Menukar kata laluan <b>tidak memadam</b> undi dan tidak menjejaskan pengundi.</p><input class='f' id='pw2' style='margin-top:8px' placeholder='Kata laluan baharu' value='${esc(d.pass)}'><button class='btn sm' id='pws' style='margin-top:10px;width:auto'>\ud83d\udcbe Simpan kata laluan sahaja</button><div class='err' id='pe'></div></div>
   <h2>\ud83c\udfaf Jawatan Pemilihan</h2><p class='mut' style='margin-bottom:12px'>Tambah, ubah atau buang jawatan. Setiap jawatan boleh dimasukkan dalam kumpulan <b>Tertinggi</b> atau <b>Biasa</b>, dan calonnya diambil daripada senarai <b>Guru</b> atau <b>AKP</b>.</p>
   <div class='card res' id='pcard'>${d.pos.map((q, i) => `<div class='pr'><input class='f pe' data-pi='${i}' data-k='ic' value='${esc(q.ic || '')}' maxlength='4' aria-label='Ikon'><input class='f pt' data-pi='${i}' data-k='t' value='${esc(q.t)}' placeholder='Nama jawatan' aria-label='Nama jawatan'><select class='f ps' data-pi='${i}' data-k='g' aria-label='Kumpulan'><option value='1' ${q.g === 1 ? 'selected' : ''}>\u2b50 Tertinggi</option><option value='2' ${q.g === 2 ? 'selected' : ''}>\ud83e\udd1d Biasa</option></select><select class='f ps' data-pi='${i}' data-k='akp' aria-label='Sumber calon'><option value='0' ${!q.akp ? 'selected' : ''}>Calon Guru</option><option value='1' ${q.akp ? 'selected' : ''}>Calon AKP</option></select><button class='btn ghost sm' data-pd='${i}' title='Buang jawatan'>\u2715</button></div>`).join('') || `<p class='mut'>Tiada jawatan.</p>`}
   <div style='display:flex;gap:8px;flex-wrap:wrap;margin-top:12px'><button class='btn ghost sm' id='pa'>+ Tambah jawatan</button><button class='btn sm' id='ps' style='width:auto'>\ud83d\udcbe Simpan jawatan</button></div>
@@ -547,8 +569,7 @@ function drawSettings(){
   <h2>\ud83c\udfaf 2. Senarai Calon Jawatan</h2><p class='mut' style='margin-bottom:12px'>Nama yang <b>boleh dipilih</b> untuk jawatan (tidak termasuk yang sudah memegang jawatan). Nama di bawah tajuk <b>STAF</b> atau bertanda <b>(AKP)</b> dikira calon AKP.</p>
   ${up('c')}${sel('c', d.cs)}
   <div class='two'>${col(false, '\ud83c\udf93 Calon Guru')}${col(true, '\ud83d\udee0\ufe0f Calon AKP')}</div>
-  <h2>\ud83d\udd11 Kata laluan AJK</h2><input class='f' id='pw2' style='margin-top:0' placeholder='Kosongkan untuk kekalkan kata laluan sedia ada' value='${esc(d.pass)}'>
-  <button class='btn' id='sv'>\ud83d\udcbe Simpan senarai &amp; set semula undi</button>
+  <button class='btn' id='sv' style='margin-top:26px'>\ud83d\udcbe Simpan senarai &amp; set semula undi</button>
   <p class='mut' style='margin-top:10px'>Menyimpan senarai baharu akan memadam semua undi sedia ada.</p>`;
   const sync = () => { d.club = $('#cl').value; d.pass = $('#pw2').value; };
   app.querySelectorAll('[data-pi]').forEach(el => el.onchange = el.oninput = () => { const q = d.pos[+el.dataset.pi], k = el.dataset.k; q[k] = k === 'g' ? +el.value : k === 'akp' ? el.value === '1' : el.value; if (el.tagName === 'SELECT') { sync(); drawSettings(); } });
@@ -596,15 +617,28 @@ function drawSettings(){
   app.querySelectorAll('[data-t]').forEach(b => b.onclick = () => { sync(); const x = d.cand[+b.dataset.t]; x.akp = !x.akp; drawSettings(); });
   app.querySelectorAll('[data-r]').forEach(b => b.onclick = () => { sync(); d.cand.splice(+b.dataset.r, 1); drawSettings(); });
   app.querySelectorAll('[data-v]').forEach(b => b.onclick = () => { sync(); d.voters.splice(+b.dataset.v, 1); drawSettings(); });
+  $('#pws').onclick = async e => {
+    sync(); const np = d.pass.trim(), pe = $('#pe'), btn = e.target;
+    pe.style.color = '';
+    if (np.length < 4) { pe.textContent = 'Kata laluan sekurang-kurangnya 4 aksara.'; return; }
+    btn.disabled = true; btn.textContent = 'Menyimpan\u2026';
+    try {
+      await db.doc('config/main').set({pass: np}, {merge: true}); /* hanya medan pass; ver & undi tidak disentuh */
+      d.pass = ''; $('#pw2').value = ''; pe.style.color = 'var(--ok)'; pe.textContent = '\u2713 Kata laluan dikemas kini. Undi tidak terjejas.';
+    } catch (x) { pe.textContent = 'Gagal menyimpan (' + ((x && x.code) || 'ralat') + '). Anda mungkin perlu akses penyunting (editor).'; }
+    btn.disabled = false; btn.textContent = '\ud83d\udcbe Simpan kata laluan sahaja';
+  };
+  let sarm = false;
   $('#sv').onclick = async () => {
     sync();
     const g = d.cand.filter(x => !x.akp).map(x => x.n), a = d.cand.filter(x => x.akp).map(x => x.n);
     if (!d.voters.length) { d.msg = 'Senarai pengundi kosong.'; d.ok = false; return drawSettings(); }
     if (g.length < 7) { d.msg = 'Calon guru mesti sekurang-kurangnya 7 nama.'; d.ok = false; return drawSettings(); }
     if (!a.length) { d.msg = 'Sekurang-kurangnya 1 calon AKP diperlukan.'; d.ok = false; return drawSettings(); }
+    if (!sarm) { sarm = true; $('#sv').textContent = '\u26a0\ufe0f Klik sekali lagi \u2014 semua undi akan dipadam'; return; }
     $('#sv').disabled = true; $('#sv').textContent = 'Menyimpan\u2026';
     try {
-      await db.doc('config/main').set({club: d.club.trim() || 'KGS SERIN', guru: g, akp: a, voters: d.voters, ver: Date.now(), pass: d.pass.trim() || CFG.pass || '', pos: POS});
+      await db.doc('config/main').set({club: d.club.trim() || 'KGS SERIN', guru: g, akp: a, voters: d.voters, ver: Date.now(), pass: CFG.pass || '', pos: POS});
       const old = await db.collection('votes').get();
       for (const x of old.docs) await db.collection('votes').doc(x.id).delete();
       S.draft = null; S.sub = 'dash'; drawAdmin();
