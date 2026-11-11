@@ -464,7 +464,9 @@ function drawAdmin(){
     <div class="card stat"><b>${pct}%</b><span>Kadar penyertaan</span><div class="bar" style="margin-top:8px"><i style="width:${pct}%"></i></div></div></div>
   <div class="vt"><button data-v="pos" class="${view==='pos'?'on':''}">🏆 Ikut Jawatan</button><button data-v="mx" class="${view==='mx'?'on':''}">📋 Jadual Calon</button><button data-v="pp" class="${view==='pp'?'on':''}">👥 Penyertaan</button></div>
   ${body}
+  ${backupCard()}
   <button class="btn ghost" id="rs" style="margin-top:26px">🗑️ Set semula semua undi (ujian)</button>`;
+  bindBackup();
   app.querySelectorAll('.vt button').forEach(b => b.onclick = () => { S.view = b.dataset.v; drawAdmin(); });
   app.querySelectorAll('.tg').forEach(b => b.onclick = () => { S.exp[b.dataset.p] = !S.exp[b.dataset.p]; drawAdmin(); });
   $('#s2').onclick = () => { S.sub = 'set'; S.draft = null; drawAdmin(); };
@@ -492,6 +494,72 @@ function drawAdmin(){
     try { for (const i of done) await db.collection('votes').doc('v'+i).delete(); } catch (x) {}
   };
 }
+
+/* ====== SANDARAN & PULIH DATA ====== */
+const BK_TYPE = 'sandaran-undi-kgs';
+const bkDate = t => { try { return new Date(t).toLocaleString('ms-MY'); } catch (e) { return ''; } };
+function backupCard(){
+  const b = S.bk || (S.bk = {}), d = b.data;
+  const sum = d ? `<div class="ld" style="margin-top:14px"><div class="ln">📄 ${esc(b.name || 'fail sandaran')}</div>
+    <div class="lm">Dibuat: ${esc(bkDate(d.exportedAt))} · ${b.active} undi aktif · ${b.logs} sejarah dibatalkan · ${d.cfg.voters.length} pengundi</div>
+    <p class="note" style="margin:8px 0 0">Tetapan (pengundi, calon, jawatan) akan dikembalikan seperti dalam sandaran. Undi yang sudah ada tidak dipadam atau ditimpa. Kata laluan AJK tidak berubah.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn sm" id="bk-go" style="width:auto" ${b.busy ? 'disabled' : ''}>${b.busy ? 'Memulihkan…' : b.arm ? '⚠️ Klik sekali lagi untuk sahkan pemulihan' : '✅ Teruskan pemulihan'}</button><button class="btn ghost sm" id="bk-cx" ${b.busy ? 'disabled' : ''}>Batal</button></div></div>` : '';
+  return `<div class="card res" style="margin-top:26px"><h3><span>💾 Sandaran &amp; Pulih Data</span></h3>
+  <p class="mut" style="font-size:13.5px;margin-bottom:12px">Muat turun semua undi dan tetapan sebagai fail. Jika data hilang, muat naik semula fail itu untuk memulihkannya.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="bk-dl" style="width:auto">⬇️ Muat turun sandaran</button><button class="btn ghost sm" id="bk-up">⬆️ Pulihkan daripada fail</button></div>
+  <input type="file" id="bk-fl" accept=".json,application/json" hidden>${sum}
+  <div class="err" id="bk-msg" style="${b.ok ? 'color:var(--ok)' : ''}">${esc(b.msg || '')}</div>
+  <p class="note">Fail sandaran mengandungi nama dan pilihan setiap pengundi, jadi simpan di tempat selamat. Kata laluan AJK tidak dimasukkan ke dalam fail.</p></div>`;
+}
+function bindBackup(){
+  const dl = $('#bk-dl'), up = $('#bk-up'), fl = $('#bk-fl'), go = $('#bk-go'), cx = $('#bk-cx');
+  dl.onclick = async () => {
+    dl.disabled = true; dl.textContent = 'Menyediakan…';
+    try {
+      const vs = await db.collection('votes').get();
+      const out = {type: BK_TYPE, format: 1, exportedAt: Date.now(),
+        cfg: {club: CFG.club, guru: ROSTER, akp: AKPS, voters: VOTERS, ver: CFG.ver, pos: POS},
+        votes: vs.docs.map(x => ({id: x.id, data: x.data()}))};
+      const d = new Date(), z = n => String(n).padStart(2, '0');
+      const name = 'sandaran-undi-' + (CFG.club || 'KGS').replace(/[^a-z0-9]+/gi, '-') + '_' + d.getFullYear() + z(d.getMonth() + 1) + z(d.getDate()) + '-' + z(d.getHours()) + z(d.getMinutes()) + '.json';
+      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 1)], {type: 'application/json'})); a.download = name;
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      S.bk = {ok: true, msg: '✓ Sandaran dimuat turun (' + vs.size + ' rekod undi): ' + name};
+    } catch (x) { S.bk = {msg: 'Gagal membuat sandaran (' + ((x && x.code) || 'ralat') + '). Cuba lagi.'}; }
+    drawAdmin();
+  };
+  up.onclick = () => fl.click();
+  fl.onchange = async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try {
+      const o = JSON.parse(await f.text());
+      const okv = o && o.type === BK_TYPE && o.cfg && Array.isArray(o.cfg.guru) && Array.isArray(o.cfg.voters) && Array.isArray(o.votes) &&
+        o.votes.every(v => v && /^(v\d+|log_\w+)$/.test(v.id) && v.data && typeof v.data === 'object');
+      if (!okv) throw new Error('format');
+      const active = o.votes.filter(v => /^v\d+$/.test(v.id) && (v.data.ver || 0) === (o.cfg.ver || 0)).length;
+      S.bk = {data: o, name: f.name, active, logs: o.votes.filter(v => v.id.startsWith('log_')).length};
+    } catch (x) { S.bk = {msg: 'Fail tidak sah. Pilih fail sandaran (.json) yang dimuat turun daripada sistem ini.'}; }
+    drawAdmin();
+  };
+  if (cx) cx.onclick = () => { S.bk = {}; drawAdmin(); };
+  if (go) go.onclick = async () => {
+    const b = S.bk;
+    if (!b.arm) { b.arm = true; return drawAdmin(); }
+    b.busy = true; drawAdmin();
+    try {
+      const c = b.data.cfg, ex = {};
+      (await db.collection('votes').get()).docs.forEach(x => { ex[x.id] = x.data(); });
+      const todo = b.data.votes.filter(v => !(ex[v.id] && (ex[v.id].ver || 0) === (v.data.ver || 0)));
+      await db.doc('config/main').set({club: c.club || 'KGS SERIN 2026', guru: c.guru, akp: c.akp || [], voters: c.voters, ver: c.ver || 0, pos: Array.isArray(c.pos) && c.pos.length ? c.pos : POS}, {merge: true});
+      for (let i = 0; i < todo.length; i += 400) {
+        const bt = db.batch(); todo.slice(i, i + 400).forEach(v => bt.set(db.collection('votes').doc(v.id), v.data)); await bt.commit();
+      }
+      S.bk = {ok: true, msg: '✓ Pemulihan selesai: ' + todo.length + ' rekod dipulihkan, ' + (b.data.votes.length - todo.length) + ' dilangkau kerana sudah ada.'};
+    } catch (x) { S.bk = {data: b.data, name: b.name, active: b.active, logs: b.logs, msg: 'Gagal memulihkan (' + ((x && x.code) || 'ralat') + '). Anda mungkin perlu akses penyunting (editor). Cuba lagi.'}; }
+    drawAdmin();
+  };
+}
+
 /* ====== TETAPAN & MUAT NAIK ====== */
 const CDN = 'https://cdnjs.cloudflare.com/ajax/libs/';
 const loadJs = u => new Promise((res, rej) => { const s = document.createElement('script'); s.src = u; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
