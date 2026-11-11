@@ -6,9 +6,18 @@
 <title>Pemilihan AJK KGS SERIN 2026</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 <style>
-:root{--bg:#f4f3ff;--card:#ffffffcc;--solid:#fff;--tx:#1b1840;--mut:#6b6995;--bd:#e3e1fa;--p:#5b4be8;--p2:#8b5cf6;--acc:#14b8a6;--ok:#10b981;--gold:#f59e0b;--sh:0 10px 30px -12px #5b4be840;--blob1:#c4b5fd;--blob2:#99f6e4;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light dark}
+:root{--bg:#f4f3ff;--card:#ffffffcc;--solid:#fff;--tx:#1b1840;--mut:#6b6995;--bd:#e3e1fa;--p:#5b4be8;--p2:#8b5cf6;--acc:#14b8a6;--ok:#10b981;--gold:#f59e0b;--sh:0 10px 30px -12px #5b4be840;--blob1:#c4b5fd;--blob2:#99f6e4;--prgb:91,75,232;--fo:#5b4be826;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light dark}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0d24;--card:#1a1740cc;--solid:#1a1740;--tx:#efeeff;--mut:#a5a3d1;--bd:#2f2b66;--p:#8b7bff;--p2:#b18cff;--sh:0 10px 30px -12px #000a;--blob1:#4c1d95;--blob2:#115e59}}
 :root[data-theme="dark"]{--bg:#0f0d24;--card:#1a1740cc;--solid:#1a1740;--tx:#efeeff;--mut:#a5a3d1;--bd:#2f2b66;--p:#8b7bff;--p2:#b18cff;--sh:0 10px 30px -12px #000a;--blob1:#4c1d95;--blob2:#115e59}
+/* ====== TEMA BAHAGIAN PEMENANG: maroon · putih · hitam · kuning (AJK kekal warna asal) ====== */
+:root[data-mode="win"]{--bg:#fffdf8;--card:#ffffffe6;--solid:#fff;--tx:#17090c;--mut:#6f5559;--bd:#eddadd;--p:#7a1022;--p2:#a3172f;--acc:#facc15;--ok:#17090c;--gold:#facc15;--sh:0 10px 30px -12px #7a102260;--blob1:#e9b8c0;--blob2:#fde68a;--prgb:122,16,34;--fo:#7a102230}
+@media (prefers-color-scheme:dark){:root[data-mode="win"]:not([data-theme="light"]){--bg:#0b0708;--card:#1b0e11cc;--solid:#1b0e11;--tx:#fff8ea;--mut:#cfaeb3;--bd:#4d1c28;--p:#b0203a;--p2:#d63a53;--acc:#facc15;--ok:#facc15;--gold:#facc15;--sh:0 10px 30px -12px #000a;--blob1:#7a1022;--blob2:#8a6a05;--prgb:214,58,83;--fo:#d63a5340}}
+:root[data-mode="win"][data-theme="dark"]{--bg:#0b0708;--card:#1b0e11cc;--solid:#1b0e11;--tx:#fff8ea;--mut:#cfaeb3;--bd:#4d1c28;--p:#b0203a;--p2:#d63a53;--acc:#facc15;--ok:#facc15;--gold:#facc15;--sh:0 10px 30px -12px #000a;--blob1:#7a1022;--blob2:#8a6a05;--prgb:214,58,83;--fo:#d63a5340}
+:root[data-mode="win"] .logo{box-shadow:0 0 0 2px #facc15,var(--sh)}
+:root[data-mode="win"] .pos.sel{background:linear-gradient(135deg,#facc1530,var(--card))}
+:root[data-mode="win"] .pos.sel .ic{color:#17090c}
+:root[data-mode="win"] .cand.top .b i{background:linear-gradient(90deg,#facc15,#eab308)}
+:root[data-mode="win"] h1,:root[data-mode="win"] h2{border-left:4px solid #facc15;padding-left:10px}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -31,7 +40,7 @@ h1{font-size:26px;line-height:1.2;margin:0 0 8px;letter-spacing:-.5px}
 h2{font-size:18px;margin:26px 0 12px;display:flex;align-items:center;gap:8px}
 .mut{color:var(--mut);font-size:14px;margin:0}
 input.f,select.f,textarea.f{width:100%;margin-top:18px;padding:15px 18px;border-radius:14px;border:1.5px solid var(--bd);background:var(--solid);color:var(--tx);font:500 16px inherit;font-family:inherit;outline:none;transition:.2s}
-input.f:focus,select.f:focus,textarea.f:focus{border-color:var(--p);box-shadow:0 0 0 4px #5b4be826}
+input.f:focus,select.f:focus,textarea.f:focus{border-color:var(--p);box-shadow:0 0 0 4px var(--fo)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font:700 15px inherit;font-family:inherit;padding:14px 26px;border-radius:14px;color:#fff;background:linear-gradient(135deg,var(--p),var(--p2));box-shadow:var(--sh);transition:.2s;width:100%;margin-top:14px}
 .btn:hover:not(:disabled){transform:translateY(-2px)}.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
 .btn.ghost{background:var(--solid);color:var(--tx);border:1px solid var(--bd);box-shadow:none}
@@ -74,6 +83,7 @@ input.f:focus,select.f:focus,textarea.f:focus{border-color:var(--p);box-shadow:0
 .sum{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed var(--bd);font-size:14px}.sum span{color:var(--mut)}.sum b{text-align:right}
 @media(max-width:520px){h1{font-size:22px}.cand{grid-template-columns:1fr 34px}.cand .b{grid-column:1/-1;order:3}}
 .dz{border:2px dashed var(--p);border-radius:18px;padding:24px;text-align:center;cursor:pointer;background:var(--card);transition:.2s}.dz:hover{background:var(--bd)}textarea.f{min-height:110px;resize:vertical;margin-top:12px}.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:14px}.it{display:flex;align-items:center;gap:6px;padding:7px 0;font-size:13.5px;font-weight:600;border-bottom:1px dashed var(--bd)}.it span{flex:1;min-width:0;overflow-wrap:anywhere}.it button{border:0;background:var(--bd);color:var(--tx);border-radius:8px;padding:4px 9px;font:600 11px inherit;font-family:inherit;cursor:pointer}
+.cand[data-cv]{cursor:pointer}.cand[data-cv]:hover .n{text-decoration:underline}.vwho{margin:-2px 0 10px 34px;padding:9px 12px;border-radius:12px;background:var(--bd);font-size:12.5px;line-height:1.7}.vwho b{font-weight:800}
 .vt{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 6px}.vt button{all:unset;cursor:pointer;padding:9px 16px;border-radius:99px;font-size:13.5px;font-weight:700;background:var(--card);border:1px solid var(--bd);color:var(--mut)}.vt button.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-color:transparent}
 .tw{overflow-x:auto;border-radius:14px;border:1px solid var(--bd);background:var(--solid)}
 table.t{border-collapse:collapse;width:100%;font-size:13.5px}table.t th,table.t td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}table.t th{font-size:12px;color:var(--mut);font-weight:700;background:var(--card)}table.t tr:last-child td{border-bottom:0}
@@ -86,13 +96,15 @@ table.mx td.v{text-align:center;font-weight:700;min-width:46px}table.mx td.v.w{o
 @media(max-width:520px){.cand{grid-template-columns:26px 1fr 30px 44px!important}.cand .b{grid-column:2/-1!important;order:5!important}}
 .ld{padding:10px 0;border-bottom:1px dashed var(--bd)}.ld:last-of-type{border-bottom:0}.lt{font-size:12px;color:var(--mut);font-weight:700}.ln{font-size:14.5px;font-weight:800;margin:2px 0;overflow-wrap:anywhere}.lm{font-size:12.5px;color:var(--mut);font-weight:600}.lm b{color:var(--tx)}
 .pr{display:grid;grid-template-columns:56px minmax(0,1fr) 130px 120px 44px;gap:8px;align-items:center;margin-bottom:8px}.pr .f{margin-top:0;padding:11px 12px;font-size:14px}.pr .pe{text-align:center;padding:11px 4px}.pr .btn{margin:0;padding:10px 0;width:100%}@media(max-width:640px){.pr{grid-template-columns:56px minmax(0,1fr) 44px;padding-bottom:10px;border-bottom:1px dashed var(--bd)}.pr .btn{grid-column:3;grid-row:1}.pr select:nth-of-type(1){grid-column:1/4;grid-row:2}.pr select:nth-of-type(2){grid-column:1/4;grid-row:3}}
+.sw{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;border-radius:99px;background:var(--bd);font-weight:800;font-size:12px;color:var(--mut);transition:.2s}.sw i{width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 1px 4px #0004}.sw.on{background:var(--ok);color:#fff;flex-direction:row-reverse;padding:4px 4px 4px 12px}.sw em{font-style:normal;min-width:24px;text-align:center}
+.pos[disabled]{opacity:.5;cursor:not-allowed}.pos[disabled]:hover{transform:none;border-color:var(--bd);box-shadow:none}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="brand"><div class="logo">🗳️</div><div><b id="club">KGS SERIN 2026</b><span>Kelab Guru &amp; Staf · Pemilihan AJK</span></div></div>
-    <div class="tabs"><button id="t-guru" class="on">Bahagian Guru</button><button id="t-ajk">AJK</button></div>
+    <div class="brand"><div class="logo">🗳️</div><div><b id="club">KGS SERIN 2026</b><span id="sub0">Kelab Guru &amp; Staf</span></div></div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn ghost sm" id="hm" style="display:none">⇄ Tukar Bahagian</button><div class="tabs"><button id="t-guru" class="on">Bahagian Guru</button><button id="t-ajk">AJK</button></div></div>
   </header>
   <main id="app"></main>
 </div>
@@ -223,6 +235,11 @@ const DEFAULT_POS = [
 {id:'akp',t:'AKP 1 (Anggota Kumpulan Pelaksana)',g:2,ic:'🛠️',akp:true},{id:'akp2',t:'AKP 2 (Anggota Kumpulan Pelaksana)',g:2,ic:'🛠️',akp:true}];
 let POS = DEFAULT_POS.map(x => Object.assign({}, x));
 const gCount = g => POS.filter(p => p.g === g).length;
+const WPOS = [{id:'king',t:'KING',g:1,ic:'🤴'},{id:'queen',t:'QUEEN',g:1,ic:'👸'},{id:'family',t:'FAMILY',g:1,ic:'👨‍👩‍👧'}];
+let NOM = {king:[],queen:[],family:[]}, OWN = [], MODE = null, SW = {ajk:true, win:true}, swOk = false, cfgOk = false, unsubC = null;
+const D0 = {V: VOTERS.slice(), R: ROSTER.slice(), A: AKPS.slice()};
+const VP = () => MODE === 'win' ? 'w' : 'v';
+const H1 = () => MODE === 'win' ? '👑 Kategori Pemenang' : `⭐ ${gCount(1)} AJK Tertinggi`;
 
 /* ====== STATE ====== */
 const $ = s => document.querySelector(s), app = $('#app');
@@ -242,51 +259,82 @@ const firebaseConfig = {
   appId: "1:54694111791:web:242b59905452a1bdebb4da",
   measurementId: "G-98TSE55EDP"
 };
-let AUTH_ERR = '';
-(async () => {
+let AUTH_ERR = '', APASS = '';
+async function initFirebase(){
   const t = setTimeout(() => { if (S.dbState === 'wait') { S.dbState = 'fail'; render(); } }, 12000);
   try {
     if (!window.firebase) throw new Error('Firebase SDK tidak dimuatkan');
     const fbApp = firebase.apps.length ? firebase.app() : firebase.initializeApp(firebaseConfig);
     db = fbApp.firestore();
   } catch (e) { console.error(e); db = null; }
-  /* Log masuk anonim (sama seperti sistem lain anda): diperlukan jika Rules menggunakan request.auth != null */
+  /* Log masuk anonim: diperlukan jika Rules menggunakan request.auth != null */
   if (db && firebase.auth) {
     try { await firebase.auth().signInAnonymously(); }
     catch (e) { console.error('Auth anonim gagal:', e); AUTH_ERR = (e && e.code) || 'auth/error'; }
   }
   clearTimeout(t);
   S.dbState = db ? 'ok' : 'fail';
-  if (db) db.doc('config/main').onSnapshot(
-    s => applyCfg(s.exists ? s.data() : null),
-    err => { console.error('Firestore:', err); S.dbState = 'fail'; S.dbErr = AUTH_ERR || (err && err.code) || 'unknown'; render(); }
-  );
+  if (db) {
+    const fail = err => { console.error('Firestore:', err); S.dbState = 'fail'; S.dbErr = AUTH_ERR || (err && err.code) || 'unknown'; render(); };
+    db.doc('config/switch').onSnapshot(x => onSw(x), fail);
+    db.doc('config/auth').onSnapshot(x => { APASS = x.exists ? (x.data().pass || '') : ''; }, () => {});
+  }
   render();
-})();
+}
 
 function applyCfg(c){
   const sig = JSON.stringify(c || null);
   if (sig === lastCfg) return; /* tiada perubahan sebenar: jangan lukis semula halaman (punca tulisan terpadam) */
-  const first = lastCfg === null; lastCfg = sig;
+  cfgOk = true; const first = lastCfg === null; lastCfg = sig;
   const old = CFG.ver;
-  if (c && c.guru) { ROSTER = c.guru; AKPS = c.akp || []; VOTERS = c.voters || c.guru.concat(c.akp || []); CFG = {club: c.club || 'KGS SERIN 2026', ver: c.ver || 0, pass: c.pass || ''}; POS = Array.isArray(c.pos) && c.pos.length ? c.pos : DEFAULT_POS.map(x => Object.assign({}, x)); }
-  ALL = ROSTER.concat(AKPS); $('#club').textContent = CFG.club;
+  if (MODE === 'win') { const m = (c && c.noms) || {}; WPOS.forEach(p => NOM[p.id] = m[p.id] || []); VOTERS = (c && c.voters) || D0.V.slice(); CFG = {club: (c && c.club) || 'KGS SERIN 2026', ver: (c && c.ver) || 0, pass: (c && c.pass) || ''}; POS = WPOS.filter(p => NOM[p.id].length); ALL = []; OWN = []; WPOS.forEach(p => NOM[p.id].forEach(n => { ALL.push(n); OWN.push(p.id); })); }
+  else if (c && c.guru) { ROSTER = c.guru; AKPS = c.akp || []; VOTERS = c.voters || c.guru.concat(c.akp || []); CFG = {club: c.club || 'KGS SERIN 2026', ver: c.ver || 0, pass: c.pass || ''}; POS = Array.isArray(c.pos) && c.pos.length ? c.pos : DEFAULT_POS.map(x => Object.assign({}, x)); }
+  if (MODE !== 'win') { if (!(c && c.guru)) { VOTERS = D0.V.slice(); ROSTER = D0.R.slice(); AKPS = D0.A.slice(); POS = DEFAULT_POS.map(x => Object.assign({}, x)); CFG = {club: 'KGS SERIN 2026', ver: 0, pass: ''}; } ALL = ROSTER.concat(AKPS); }
+  $('#club').textContent = CFG.club;
   if (CFG.ver !== old && S.step === 'ballot') { S.step = 'login'; S.voter = null; S.picks = {}; }
   const typing = document.activeElement && /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName) && app.contains(document.activeElement) && CFG.ver === old;
-  if (S.dbState === 'ok' && !typing && !(S.tab === 'ajk' && S.admin && S.sub === 'set')) render();
+  if (S.dbState === 'ok' && !typing && !(S.tab === 'ajk' && S.admin && ['set', 'rst'].includes(S.sub))) render();
 }
 /* ====== NAVIGASI ====== */
 function setTab(t){ S.tab = t; $('#t-guru').classList.toggle('on', t==='guru'); $('#t-ajk').classList.toggle('on', t==='ajk'); render(); }
 $('#t-guru').onclick = () => setTab('guru'); $('#t-ajk').onclick = () => setTab('ajk');
-function render(){ closeSheet(); (S.tab==='guru' ? viewGuru : viewAdmin)(); window.scrollTo({top:0}); }
+function render(){
+  document.documentElement.dataset.mode = MODE === 'win' ? 'win' : 'ajk'; closeSheet(); const tb = document.querySelector('header .tabs'); $('#hm').style.display = tb.style.display = MODE ? '' : 'none';
+  $('#sub0').textContent = 'Kelab Guru & Staf' + (MODE === 'win' ? ' · Pemilihan Pemenang' : MODE === 'ajk' ? ' · Pemilihan AJK' : '');
+  (!MODE ? viewHome : !cfgOk ? () => { app.innerHTML = S.dbState === 'ok' ? waitCard() : noDb(); } : S.tab === 'guru' ? viewGuru : viewAdmin)(); window.scrollTo({top:0});
+}
+$('#hm').onclick = () => setMode(null);
+function setMode(m, t){
+  MODE = m; cfgOk = false; lastCfg = null; Object.assign(S, {step:'login', voter:null, picks:{}, admin:false, sub:'dash', view:'pos', draft:null, votes:[], exp:{}, err:''});
+  if (unsub) { unsub(); unsub = null; } if (unsubC) { unsubC(); unsubC = null; }
+  if (m) unsubC = db.doc(m === 'win' ? 'config/win' : 'config/main').onSnapshot(
+    x => applyCfg(x.exists ? x.data() : null),
+    err => { console.error('Firestore:', err); S.dbState = 'fail'; S.dbErr = AUTH_ERR || (err && err.code) || 'unknown'; render(); });
+  setTab(t || 'guru');
+}
+const onSw = x => { const d = x.exists ? x.data() : {}, n = {ajk: d.ajk !== false, win: d.win !== false}, ch = !swOk || n.ajk !== SW.ajk || n.win !== SW.win; SW = n; swOk = true;
+  if (ch && S.dbState === 'ok') { if (!MODE || S.tab === 'guru') render(); else if (S.admin && S.sub !== 'set') drawAdmin(); } };
+function viewHome(){
+  if (S.dbState !== 'ok') return app.innerHTML = noDb();
+  if (!swOk) return app.innerHTML = waitCard();
+  const c = (m, ic, t, d) => `<button class="pos" data-m="${m}" ${SW[m] ? '' : 'disabled'}><span class="ic">${ic}</span><span style="min-width:0"><small>${SW[m] ? d : '🔒 Ditutup buat masa ini'}</small><b>${t}</b></span></button>`;
+  app.innerHTML = `<div class="card hero" style="max-width:560px"><div class="big">🏫</div><h1>Selamat Datang</h1><p class="mut">Sila pilih bahagian yang ingin anda masuk.</p>
+  <div class="grid" style="grid-template-columns:1fr;margin-top:18px;text-align:left">${c('ajk','🗳️','Pemilihan AJK Baharu','Pilih barisan AJK kelab')}${c('win','👑','Pemilihan Pemenang','KING · QUEEN · FAMILY')}</div>
+  <p class="mut" style="margin-top:24px;font-size:12.5px">Khas untuk AJK (perlu kata laluan)</p>
+  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px"><button class="btn ghost sm" data-a="ajk">🔐 Urus AJK Baharu</button><button class="btn ghost sm" data-a="win">🔐 Urus Pemenang</button></div></div>`;
+  app.querySelectorAll('[data-m]').forEach(b => b.onclick = () => setMode(b.dataset.m));
+  app.querySelectorAll('[data-a]').forEach(b => b.onclick = () => setMode(b.dataset.a, 'ajk'));
+}
 
 /* ====== BAHAGIAN GURU ====== */
 function viewGuru(){
   if (S.dbState !== 'ok') return app.innerHTML = noDb();
+  if (!SW[MODE] || (MODE === 'win' && !POS.length)) { app.innerHTML = `<div class="card hero"><div class="big">🔒</div><h1>${SW[MODE] ? 'Belum Disediakan' : 'Bahagian Ditutup'}</h1><p class="mut">${SW[MODE] ? 'Senarai calon belum disediakan oleh AJK.' : 'Bahagian ini tidak dibuka buat masa ini. Sila kembali dan pilih bahagian yang betul.'}</p><button class="btn" id="bk0">← Kembali ke pilihan bahagian</button></div>`; return $('#bk0').onclick = () => setMode(null); }
   if (S.step === 'login') return viewLogin();
   if (S.step === 'done') return viewDone();
   viewBallot();
 }
+const waitCard = () => `<div class="card hero"><div class="big">\u23f3</div><h1>Menyambung\u2026</h1><p class="mut">Sila tunggu sebentar.</p></div>`;
 function noDb(){
   if (S.dbState === 'wait') return `<div class="card hero"><div class="big">\u23f3</div><h1>Menyambung\u2026</h1><p class="mut">Sila tunggu sebentar.</p></div>`;
   const c = S.dbErr || '', hint = (c === 'auth/operation-not-allowed' || c === 'auth/admin-restricted-operation') ? 'Log masuk Anonymous belum dihidupkan. Di Firebase Console \u2192 Authentication \u2192 Sign-in method \u2192 Anonymous \u2192 Enable.'
@@ -298,8 +346,8 @@ function noDb(){
   return `<div class="card hero"><div class="big">\ud83d\udd12</div><h1>Sambungan tidak tersedia</h1><p class="mut">${hint}</p>${c ? `<p class="mut" style="margin-top:10px;font-size:12px">Kod ralat: ${esc(c)}</p>` : ''}</div>`;
 }
 function viewLogin(){
-  app.innerHTML = `<div class="card hero"><div class="big">🗳️</div><h1>Pemilihan AJK Baharu</h1>
-  <p class="mut">Taip nama anda untuk mula mengundi. Anda perlu memilih <b>${POS.length} nama berbeza</b> bagi ${POS.length} jawatan.</p>
+  app.innerHTML = `<div class="card hero"><div class="big">${MODE==='win'?'👑':'🗳️'}</div><h1>${MODE==='win'?'Pemilihan Pemenang':'Pemilihan AJK Baharu'}</h1>
+  <p class="mut">Taip nama anda untuk mula mengundi. ${MODE==='win'?`Anda memilih <b>seorang calon</b> bagi setiap kategori (${POS.map(p=>p.t).join(', ')}).`:`Anda perlu memilih <b>${POS.length} nama berbeza</b> bagi ${POS.length} jawatan.`}</p>
   <input class="f" id="nm" list="dl" placeholder="Taip nama anda (penuh atau pendek)…" autocomplete="off">
   <datalist id="dl">${VOTERS.map(n=>`<option value="${esc(n)}">`).join('')}</datalist>
   <div class="err" id="er">${esc(S.err)}</div><div id="sg" class="list" style="display:flex;flex-direction:column;gap:6px;text-align:left"></div>
@@ -313,7 +361,7 @@ function viewLogin(){
     if (!m.length) return fail('Nama tidak ditemui. Cuba taip sebahagian nama anda.');
     $('#go').disabled = true;
     try {
-      const snap = await db.collection('votes').doc('v'+m[0]).get();
+      const snap = await db.collection('votes').doc(VP() + m[0]).get();
       if (snap.exists && (snap.data().ver||0) === CFG.ver) { S.voter = m[0]; S.step = 'done'; S.already = true; return render(); }
     } catch (e) { $('#go').disabled = false; return fail('Ralat sambungan (' + ((e && e.code) || 'ralat') + '). Cuba lagi.'); }
     S.voter = m[0]; S.picks = {}; S.step = 'ballot'; S.already = false; S.err = ''; render();
@@ -332,10 +380,10 @@ function viewBallot(){
   };
   app.innerHTML = `<div class="prog"><div class="card"><div style="font-size:13px"><span class="mut">Selamat datang,</span><br><b>${esc(VOTERS[S.voter])}</b></div>
     <div class="bar"><i style="width:${n/POS.length*100}%"></i></div><div class="cnt">${n}/${POS.length}</div></div></div>
-  ${gCount(1) ? `<h2>⭐ ${gCount(1)} AJK Tertinggi</h2><div class="grid">${POS.filter(p=>p.g===1).map(card).join('')}</div>` : ''}
+  ${gCount(1) ? `<h2>${H1()}</h2><div class="grid">${POS.filter(p=>p.g===1).map(card).join('')}</div>` : ''}
   ${gCount(2) ? `<h2>🤝 ${gCount(2)} AJK Biasa</h2><div class="grid">${POS.filter(p=>p.g===2).map(card).join('')}</div>` : ''}
-  <p class="mut" style="margin-top:18px">Nama yang telah dipilih akan hilang daripada senarai jawatan lain.</p>
-  <button class="btn" id="sub" ${n<POS.length?'disabled':''}>${n<POS.length?`Pilih ${POS.length-n} lagi jawatan`:'Semak &amp; Hantar Undi ✓'}</button>
+  <p class="mut" style="margin-top:18px">${MODE==='win'?'Pilih seorang calon bagi setiap kategori.':'Nama yang telah dipilih akan hilang daripada senarai jawatan lain.'}</p>
+  <button class="btn" id="sub" ${n<POS.length?'disabled':''}>${n<POS.length?`Pilih ${POS.length-n} lagi ${MODE==='win'?'kategori':'jawatan'}`:'Semak &amp; Hantar Undi ✓'}</button>
   <button class="btn ghost" id="out">Batal &amp; keluar</button>`;
   app.querySelectorAll('.pos').forEach(b => b.onclick = () => openPicker(b.dataset.p));
   $('#sub').onclick = openConfirm;
@@ -347,7 +395,7 @@ $('#ov').onclick = e => { if (e.target.id === 'ov') closeSheet(); };
 
 function openPicker(pid){
   const p = POS.find(x => x.id === pid), cur = S.picks[pid], used = chosen().filter(i => i !== cur);
-  const pool = ALL.map((n,i)=>i).filter(i => !!(p.akp || pid === 'akp') === isAkp(i) && !used.includes(i));
+  const pool = ALL.map((n,i)=>i).filter(i => MODE === 'win' ? OWN[i] === pid : (!!(p.akp || pid === 'akp') === isAkp(i) && !used.includes(i)));
   openSheet(`<div style="display:flex;justify-content:space-between;align-items:center"><div><small class="mut">Pilih untuk jawatan</small><div style="font-weight:800;font-size:18px">${p.ic} ${p.t}</div></div>
     <button class="btn ghost sm" id="x">Tutup</button></div>
     <input class="f" id="q" placeholder="Cari nama…" style="margin-top:12px"><div class="list" id="ls"></div>`);
@@ -370,9 +418,9 @@ function openConfirm(){
   $('#ok').onclick = async () => {
     $('#ok').disabled = true; $('#ok').textContent = 'Menghantar…';
     try {
-      const ref = db.collection('votes').doc('v'+S.voter);
+      const ref = db.collection('votes').doc(VP() + S.voter);
       if ((s => s.exists && (s.data().ver||0) === CFG.ver)(await ref.get())) { S.step = 'done'; S.already = true; return render(); }
-      await ref.set({voter: VOTERS[S.voter], idx: S.voter, picks: S.picks, ts: Date.now(), ver: CFG.ver});
+      await ref.set({mode: MODE, voter: VOTERS[S.voter], idx: S.voter, picks: S.picks, ts: Date.now(), ver: CFG.ver});
       S.step = 'done'; S.already = false; render();
     } catch (e) { $('#ok').disabled = false; $('#ok').textContent = 'Hantar Undi'; $('#ce').textContent = 'Gagal menghantar (' + ((e && e.code) || 'ralat') + '). Cuba lagi.'; }
   };
@@ -401,9 +449,9 @@ function viewAdmin(){
     <div class="err" id="er"></div><button class="btn" id="go">Log Masuk</button></div>`;
     const go = async () => {
       const v = $('#pw').value;
-      if (v !== (CFG.pass || ADMIN_PASS) && !(await isMaster(v))) return $('#er').textContent = 'Kata laluan salah.';
+      if (v !== (APASS || CFG.pass || ADMIN_PASS) && !(await isMaster(v))) return $('#er').textContent = 'Kata laluan salah.';
       S.admin = true;
-      if (!unsub) unsub = db.collection('votes').onSnapshot(s => { S.votes = s.docs.map(d => d.data()); if (S.tab==='ajk' && S.admin) drawAdmin(); }, () => {});
+      if (!unsub) unsub = db.collection('votes').onSnapshot(s => { S.votes = s.docs.map(d => d.data()).filter(v => (v.mode || 'ajk') === MODE); if (S.tab==='ajk' && S.admin) drawAdmin(); }, () => {});
       drawAdmin();
     };
     $('#go').onclick = go; $('#pw').onkeydown = e => { if (e.key === 'Enter') go(); }; return $('#pw').focus();
@@ -411,7 +459,8 @@ function viewAdmin(){
   drawAdmin();
 }
 function drawAdmin(){
-  if (S.sub === 'set') return drawSettings();
+  if (S.sub === 'rst') return drawReset();
+  if (S.sub === 'set') return MODE === 'win' ? drawWinSettings() : drawSettings();
   const V = S.votes.filter(v => (v.ver||0) === CFG.ver), N = VOTERS.length, done = new Set(V.map(v => v.idx)), pct = Math.round(done.size / N * 100), pend = VOTERS.map((n,i)=>i).filter(i => !done.has(i));
   const SH0 = {pengerusi:'Pengerusi',timbalan:'Timb.',bendahari:'Bend.',naib:'N.Bend.',setiausaha:'Setiausaha',guru1:'Guru 1',guru2:'Guru 2',akp:'AKP 1',akp2:'AKP 2'}, SH = new Proxy({}, {get: (o, k) => { const q = POS.find(x => x.id === k); return SH0[k] || (q ? (q.t.length > 11 ? q.t.slice(0,10) + '…' : q.t) : k); }});
   const tot = V.length, view = S.view || 'pos';
@@ -430,11 +479,11 @@ function drawAdmin(){
       if (!rows.length) return `<div class="ld"><div class="lt">${p.ic} ${p.t}</div><div class="mut">Belum ada undi</div></div>`;
       const tie = l.length > 1, gap = rows.length > l.length ? rows[0].n - rows[l.length].n : null, dup = !tie && leadCount[l[0].i] > 1;
       return `<div class="ld"><div class="lt">${p.ic} ${p.t}</div><div class="ln">${l.map(x => esc(ALL[x.i])).join(' / ')}${tie ? '<span class="badge">⚖️ Seri</span>' : ''}${dup ? '<span class="badge" title="Nama ini mendahului lebih daripada satu jawatan">⚠️ Unggul jawatan lain juga</span>' : ''}</div><div class="lm"><b>${rows[0].n}</b> undi · ${pc(rows[0].n)}% · jurang ${tie ? '0' : gap === null ? '—' : '+' + gap}</div></div>`; }).join('')
-  }<p class="note">Jurang = beza undi dengan tempat kedua. Seorang hanya boleh memegang satu jawatan, jadi nama bertanda ⚠️ perlu diputuskan.</p></div>`;
+  }<p class="note">Jurang = beza undi dengan tempat kedua. ${MODE==='win'?'':'Seorang hanya boleh memegang satu jawatan, jadi nama bertanda ⚠️ perlu diputuskan.'}</p></div>`;
   const res = p => {
     const rows = T[p.id], max = rows.length ? rows[0].n : 1, open = !!S.exp[p.id], show = open ? rows : rows.slice(0,3), l = leaders(p);
-    return `<div class="card res"><h3><span>${p.ic} ${p.t}${l.length > 1 ? '<span class="badge">⚖️ Seri</span>' : ''}</span><span class="mut">${rows.length} calon · ${tot} undi</span></h3>${
-      show.map(x => `<div class="cand ${x.r===1?'top':''}"><span class="rk">${x.r}</span><span class="n" title="${esc(ALL[x.i])}">${esc(ALL[x.i])}</span><span class="b"><i style="width:${x.n/max*100}%"></i></span><em>${x.n}</em><small>${pc(x.n)}%</small></div>`).join('')
+    return `<div class="card res"><h3><span>${p.ic} ${p.t}${l.length > 1 ? '<span class="badge">⚖️ Seri</span>' : ''}</span><span class="mut">${rows.length} calon · ${tot} undi</span></h3>${rows.length ? '<p class="mut" style="font-size:12px;margin:-4px 0 8px">Ketik nama calon untuk melihat guru yang mengundinya.</p>' : ''}${
+      show.map(x => { const ck = 'cv:' + p.id + ':' + x.i, who = S.exp[ck] ? V.filter(v => v.picks && v.picks[p.id] === x.i).map(v => VOTERS[v.idx] || v.voter || '?').sort((a, b) => a.localeCompare(b)) : null; return `<div class="cand ${x.r===1?'top':''}" data-cv="${ck}" title="Ketik untuk lihat guru yang mengundi"><span class="rk">${x.r}</span><span class="n" title="${esc(ALL[x.i])}">${esc(ALL[x.i])}</span><span class="b"><i style="width:${x.n/max*100}%"></i></span><em>${x.n}</em><small>${pc(x.n)}%</small></div>${who ? `<div class="vwho"><b>${who.length} guru mengundi ${esc(ALL[x.i])}:</b><br>${who.map(esc).join(' · ')}</div>` : ''}`; }).join('')
       || '<p class="mut">Belum ada undi.</p>'}${rows.length > 3 ? `<button class="btn ghost sm tg" data-p="${p.id}">${open ? 'Tunjuk 3 teratas ▴' : `Tunjuk semua ${rows.length} calon ▾`}</button>` : ''}</div>`;
   };
   const matrix = () => {
@@ -443,7 +492,7 @@ function drawAdmin(){
     if (!ids.length) return '<div class="card res"><p class="mut">Belum ada undi.</p></div>';
     const mx = Math.max(...ids.flatMap(i => Object.values(tt[i].by).map(x => x.n)));
     return `<div class="card res"><h3><span>📋 Jadual Keseluruhan Calon</span><span class="mut">${ids.length} nama</span></h3><div class="tw"><table class="t mx"><tr><th>Calon</th>${POS.map(p => `<th class="c" title="${p.t}">${p.ic}<br>${SH[p.id]||p.t}</th>`).join('')}<th class="c">Jumlah</th></tr>${
-      ids.map(i => `<tr><td class="nm">${esc(ALL[i])}</td>${POS.map(p => { const x = tt[i].by[p.id]; return x ? `<td class="v${x.r===1?' w':''}" style="background:rgba(91,75,232,${(.12+.5*x.n/mx).toFixed(2)})" title="${p.t}: ${x.n} undi (kedudukan ${x.r})">${x.n}</td>` : '<td class="v z">·</td>'; }).join('')}<td class="c"><b>${tt[i].tot}</b></td></tr>`).join('')
+      ids.map(i => `<tr><td class="nm">${esc(ALL[i])}</td>${POS.map(p => { const x = tt[i].by[p.id]; return x ? `<td class="v${x.r===1?' w':''}" style="background:rgba(var(--prgb),${(.12+.5*x.n/mx).toFixed(2)})" title="${p.t}: ${x.n} undi (kedudukan ${x.r})">${x.n}</td>` : '<td class="v z">·</td>'; }).join('')}<td class="c"><b>${tt[i].tot}</b></td></tr>`).join('')
     }</table></div><p class="note">Nama disusun ikut jumlah undi keseluruhan. Sel berbingkai emas = mendahului jawatan itu; warna lebih pekat = lebih banyak undi.</p></div>`;
   };
   const byIdx = {}; V.forEach(v => { byIdx[v.idx] = v; });
@@ -451,12 +500,14 @@ function drawAdmin(){
   const picksOf = v => v && v.picks ? `<div style="margin-top:8px">${POS.map(p => `<div class="sum"><span>${p.ic} ${esc(p.t)}</span><b>${v.picks[p.id] !== undefined && ALL[v.picks[p.id]] !== undefined ? esc(ALL[v.picks[p.id]]) : '—'}</b></div>`).join('')}</div>` : '';
   const people = () => `<h2>⏳ Belum Mengundi (${pend.length})</h2><div class="card res">${pend.length ? `<ol style="margin:0 0 14px;padding-left:24px;columns:2 220px">${pend.map(i => `<li style="padding:3px 0;font-size:14px;font-weight:600">${esc(VOTERS[i])}</li>`).join('')}</ol><button class="btn ghost sm" id="cp">📋 Salin senarai</button>` : '<p class="mut">🎉 Semua telah mengundi!</p>'}</div>
   <h2>✅ Sudah Mengundi (${done.size})</h2>
-  <p class="note" style="margin:-6px 2px 10px">Jika seseorang sebenarnya belum mengundi tetapi sistem merekodkan sudah mengundi, sahkan dahulu dengan individu itu, kemudian tekan <b>Benarkan undi semula</b>. Undi lama dibatalkan sepenuhnya dan disimpan dalam sejarah di bawah.</p>
-  <div class="card res">${done.size ? [...done].sort((a,b) => a-b).map(i => { const v = byIdx[i], open = !!S.exp['vw:' + i]; return `<div class="ld"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between"><div><div class="ln">✓ ${esc(VOTERS[i])}</div><div class="lm">${v && v.ts ? 'Mengundi: ' + esc(new Date(v.ts).toLocaleString('ms-MY')) : ''}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn ghost sm" data-vw="${i}">${open ? '🙈 Sembunyi undi' : '👁 Lihat undi'}</button><button class="btn ghost sm" data-rv="${i}">↩ Benarkan undi semula</button></div></div>${open ? picksOf(v) : ''}</div>`; }).join('') : '<p class="mut">Belum ada.</p>'}</div>
+  <p class="note" style="margin:-6px 2px 10px">Untuk membenarkan seorang guru mengundi semula, gunakan tab <b>🗑️ Set Semula</b>.</p>
+  <div class="card res">${done.size ? [...done].sort((a,b) => a-b).map(i => { const v = byIdx[i], open = !!S.exp['vw:' + i]; return `<div class="ld"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between"><div><div class="ln">✓ ${esc(VOTERS[i])}</div><div class="lm">${v && v.ts ? 'Mengundi: ' + esc(new Date(v.ts).toLocaleString('ms-MY')) : ''}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn ghost sm" data-vw="${i}">${open ? '🙈 Sembunyi undi' : '👁 Lihat undi'}</button></div></div>${open ? picksOf(v) : ''}</div>`; }).join('') : '<p class="mut">Belum ada.</p>'}</div>
   ${logs.length ? `<h2>🕘 Sejarah Undi Dibatalkan (${logs.length})</h2><div class="card res">${logs.map(v => { const open = !!S.exp['lw:' + v.lid]; return `<div class="ld"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between"><div><div class="ln">${esc(v.voter || VOTERS[v.idx] || '?')}</div><div class="lm">Mengundi: ${esc(new Date(v.ts).toLocaleString('ms-MY'))} · Dibatalkan: <b>${esc(new Date(v.resetTs).toLocaleString('ms-MY'))}</b></div></div><button class="btn ghost sm" data-lw="${esc(v.lid)}">${open ? '🙈 Sembunyi' : '👁 Lihat undi lama'}</button></div>${open ? picksOf(v) : ''}</div>`; }).join('')}</div>` : ''}`;
-  const body = view === 'mx' ? matrix() : view === 'pp' ? people() : `${summary()}${gCount(1) ? `<h2>⭐ ${gCount(1)} AJK Tertinggi</h2>${POS.filter(p=>p.g===1).map(res).join('')}` : ''}${gCount(2) ? `<h2>🤝 ${gCount(2)} AJK Biasa</h2>${POS.filter(p=>p.g===2).map(res).join('')}` : ''}`;
-  app.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><h1 style="margin:0">📊 Dashboard AJK</h1><button class="btn ghost sm" id="lo">Log keluar</button></div>
-  <div class="tabs" style="display:inline-flex;margin-top:14px"><button class="on">Dashboard</button><button id="s2">⚙️ Tetapan &amp; Muat Naik</button></div>
+  const body = view === 'mx' ? matrix() : view === 'pp' ? people() : `${summary()}${gCount(1) ? `<h2>${H1()}</h2>${POS.filter(p=>p.g===1).map(res).join('')}` : ''}${gCount(2) ? `<h2>🤝 ${gCount(2)} AJK Biasa</h2>${POS.filter(p=>p.g===2).map(res).join('')}` : ''}`;
+  app.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><h1 style="margin:0">📊 ${MODE==='win'?'Dashboard Pemenang':'Dashboard AJK'}</h1><button class="btn ghost sm" id="lo">Log keluar</button></div>
+  <div class="tabs" style="display:inline-flex;margin-top:14px"><button class="on">Dashboard</button><button id="s2">⚙️ Tetapan &amp; Muat Naik</button><button id="s3">🗑️ Set Semula</button></div>
+  ${swCard()}
+  <button class="btn ghost sm" id="bk2" style="margin-top:12px">⬇ Muat turun sandaran ${MODE === 'win' ? 'Pemenang' : 'AJK'}</button>
   <div class="stats" style="margin-top:16px">
     <div class="card stat"><b>${N}</b><span>Jumlah pengundi (guru + AKP)</span></div>
     <div class="card stat"><b style="color:var(--ok)">${done.size}</b><span>Sudah mengundi</span></div>
@@ -464,102 +515,18 @@ function drawAdmin(){
     <div class="card stat"><b>${pct}%</b><span>Kadar penyertaan</span><div class="bar" style="margin-top:8px"><i style="width:${pct}%"></i></div></div></div>
   <div class="vt"><button data-v="pos" class="${view==='pos'?'on':''}">🏆 Ikut Jawatan</button><button data-v="mx" class="${view==='mx'?'on':''}">📋 Jadual Calon</button><button data-v="pp" class="${view==='pp'?'on':''}">👥 Penyertaan</button></div>
   ${body}
-  ${backupCard()}
-  <button class="btn ghost" id="rs" style="margin-top:26px">🗑️ Set semula semua undi (ujian)</button>`;
-  bindBackup();
+  `;
   app.querySelectorAll('.vt button').forEach(b => b.onclick = () => { S.view = b.dataset.v; drawAdmin(); });
+  app.querySelectorAll('[data-cv]').forEach(b => b.onclick = () => { S.exp[b.dataset.cv] = !S.exp[b.dataset.cv]; drawAdmin(); });
   app.querySelectorAll('.tg').forEach(b => b.onclick = () => { S.exp[b.dataset.p] = !S.exp[b.dataset.p]; drawAdmin(); });
-  $('#s2').onclick = () => { S.sub = 'set'; S.draft = null; drawAdmin(); };
+  $('#s2').onclick = () => { S.sub = 'set'; S.draft = null; drawAdmin(); }; $('#s3').onclick = () => { S.sub = 'rst'; S.rm = {}; drawAdmin(); }; $('#bk2').onclick = () => doBackup(MODE);
+  app.querySelectorAll('[data-sw]').forEach(b => b.onclick = () => { b.disabled = true; db.doc('config/switch').set({[b.dataset.sw]: !SW[b.dataset.sw]}, {merge: true}).catch(() => { b.disabled = false; }); });
   $('#lo').onclick = () => { S.admin = false; if (unsub) { unsub(); unsub = null; } viewAdmin(); };
   app.querySelectorAll('[data-vw]').forEach(b => b.onclick = () => { const k = 'vw:' + b.dataset.vw; S.exp[k] = !S.exp[k]; drawAdmin(); });
   app.querySelectorAll('[data-lw]').forEach(b => b.onclick = () => { const k = 'lw:' + b.dataset.lw; S.exp[k] = !S.exp[k]; drawAdmin(); });
-  app.querySelectorAll('[data-rv]').forEach(b => { let arm = false; b.onclick = async () => {
-    if (!arm) { arm = true; b.textContent = '\u26a0\ufe0f Sahkan: batalkan undi & benarkan semula'; return; }
-    b.disabled = true; b.textContent = 'Memproses\u2026';
-    try {
-      const i = +b.dataset.rv, ref = db.collection('votes').doc('v' + i), snap = await ref.get();
-      if (snap.exists) {
-        const d0 = snap.data(), lid = 'log_' + Date.now() + '_' + i, batch = db.batch();
-        batch.set(db.collection('votes').doc(lid), Object.assign({}, d0, {log: true, lid, ver: -1, origVer: d0.ver || 0, resetTs: Date.now()}));
-        batch.delete(ref);
-        await batch.commit();
-      }
-    } catch (x) { arm = false; b.disabled = false; b.textContent = 'Gagal (' + ((x && x.code) || 'ralat') + ') \u2014 cuba lagi'; }
-  }; });
+
   const cp = $('#cp'); if (cp) cp.onclick = async () => { const t = 'Belum mengundi (KGS SERIN 2026):\n' + pend.map((i,k) => (k+1) + '. ' + VOTERS[i]).join('\n'); try { await navigator.clipboard.writeText(t); cp.textContent = '✓ Disalin'; } catch (e) { cp.textContent = 'Tidak dapat salin — sila salin teks secara manual'; } };
-  let armed = false;
-  $('#rs').onclick = async e => {
-    if (!armed) { armed = true; e.target.textContent = '⚠️ Klik sekali lagi untuk sahkan'; return; }
-    e.target.disabled = true;
-    try { for (const i of done) await db.collection('votes').doc('v'+i).delete(); } catch (x) {}
-  };
 }
-
-/* ====== SANDARAN & PULIH DATA ====== */
-const BK_TYPE = 'sandaran-undi-kgs';
-const bkDate = t => { try { return new Date(t).toLocaleString('ms-MY'); } catch (e) { return ''; } };
-function backupCard(){
-  const b = S.bk || (S.bk = {}), d = b.data;
-  const sum = d ? `<div class="ld" style="margin-top:14px"><div class="ln">📄 ${esc(b.name || 'fail sandaran')}</div>
-    <div class="lm">Dibuat: ${esc(bkDate(d.exportedAt))} · ${b.active} undi aktif · ${b.logs} sejarah dibatalkan · ${d.cfg.voters.length} pengundi</div>
-    <p class="note" style="margin:8px 0 0">Tetapan (pengundi, calon, jawatan) akan dikembalikan seperti dalam sandaran. Undi yang sudah ada tidak dipadam atau ditimpa. Kata laluan AJK tidak berubah.</p>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn sm" id="bk-go" style="width:auto" ${b.busy ? 'disabled' : ''}>${b.busy ? 'Memulihkan…' : b.arm ? '⚠️ Klik sekali lagi untuk sahkan pemulihan' : '✅ Teruskan pemulihan'}</button><button class="btn ghost sm" id="bk-cx" ${b.busy ? 'disabled' : ''}>Batal</button></div></div>` : '';
-  return `<div class="card res" style="margin-top:26px"><h3><span>💾 Sandaran &amp; Pulih Data</span></h3>
-  <p class="mut" style="font-size:13.5px;margin-bottom:12px">Muat turun semua undi dan tetapan sebagai fail. Jika data hilang, muat naik semula fail itu untuk memulihkannya.</p>
-  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="bk-dl" style="width:auto">⬇️ Muat turun sandaran</button><button class="btn ghost sm" id="bk-up">⬆️ Pulihkan daripada fail</button></div>
-  <input type="file" id="bk-fl" accept=".json,application/json" hidden>${sum}
-  <div class="err" id="bk-msg" style="${b.ok ? 'color:var(--ok)' : ''}">${esc(b.msg || '')}</div>
-  <p class="note">Fail sandaran mengandungi nama dan pilihan setiap pengundi, jadi simpan di tempat selamat. Kata laluan AJK tidak dimasukkan ke dalam fail.</p></div>`;
-}
-function bindBackup(){
-  const dl = $('#bk-dl'), up = $('#bk-up'), fl = $('#bk-fl'), go = $('#bk-go'), cx = $('#bk-cx');
-  dl.onclick = async () => {
-    dl.disabled = true; dl.textContent = 'Menyediakan…';
-    try {
-      const vs = await db.collection('votes').get();
-      const out = {type: BK_TYPE, format: 1, exportedAt: Date.now(),
-        cfg: {club: CFG.club, guru: ROSTER, akp: AKPS, voters: VOTERS, ver: CFG.ver, pos: POS},
-        votes: vs.docs.map(x => ({id: x.id, data: x.data()}))};
-      const d = new Date(), z = n => String(n).padStart(2, '0');
-      const name = 'sandaran-undi-' + (CFG.club || 'KGS').replace(/[^a-z0-9]+/gi, '-') + '_' + d.getFullYear() + z(d.getMonth() + 1) + z(d.getDate()) + '-' + z(d.getHours()) + z(d.getMinutes()) + '.json';
-      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 1)], {type: 'application/json'})); a.download = name;
-      document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-      S.bk = {ok: true, msg: '✓ Sandaran dimuat turun (' + vs.size + ' rekod undi): ' + name};
-    } catch (x) { S.bk = {msg: 'Gagal membuat sandaran (' + ((x && x.code) || 'ralat') + '). Cuba lagi.'}; }
-    drawAdmin();
-  };
-  up.onclick = () => fl.click();
-  fl.onchange = async e => {
-    const f = e.target.files[0]; if (!f) return;
-    try {
-      const o = JSON.parse(await f.text());
-      const okv = o && o.type === BK_TYPE && o.cfg && Array.isArray(o.cfg.guru) && Array.isArray(o.cfg.voters) && Array.isArray(o.votes) &&
-        o.votes.every(v => v && /^(v\d+|log_\w+)$/.test(v.id) && v.data && typeof v.data === 'object');
-      if (!okv) throw new Error('format');
-      const active = o.votes.filter(v => /^v\d+$/.test(v.id) && (v.data.ver || 0) === (o.cfg.ver || 0)).length;
-      S.bk = {data: o, name: f.name, active, logs: o.votes.filter(v => v.id.startsWith('log_')).length};
-    } catch (x) { S.bk = {msg: 'Fail tidak sah. Pilih fail sandaran (.json) yang dimuat turun daripada sistem ini.'}; }
-    drawAdmin();
-  };
-  if (cx) cx.onclick = () => { S.bk = {}; drawAdmin(); };
-  if (go) go.onclick = async () => {
-    const b = S.bk;
-    if (!b.arm) { b.arm = true; return drawAdmin(); }
-    b.busy = true; drawAdmin();
-    try {
-      const c = b.data.cfg, ex = {};
-      (await db.collection('votes').get()).docs.forEach(x => { ex[x.id] = x.data(); });
-      const todo = b.data.votes.filter(v => !(ex[v.id] && (ex[v.id].ver || 0) === (v.data.ver || 0)));
-      await db.doc('config/main').set({club: c.club || 'KGS SERIN 2026', guru: c.guru, akp: c.akp || [], voters: c.voters, ver: c.ver || 0, pos: Array.isArray(c.pos) && c.pos.length ? c.pos : POS}, {merge: true});
-      for (let i = 0; i < todo.length; i += 400) {
-        const bt = db.batch(); todo.slice(i, i + 400).forEach(v => bt.set(db.collection('votes').doc(v.id), v.data)); await bt.commit();
-      }
-      S.bk = {ok: true, msg: '✓ Pemulihan selesai: ' + todo.length + ' rekod dipulihkan, ' + (b.data.votes.length - todo.length) + ' dilangkau kerana sudah ada.'};
-    } catch (x) { S.bk = {data: b.data, name: b.name, active: b.active, logs: b.logs, msg: 'Gagal memulihkan (' + ((x && x.code) || 'ralat') + '). Anda mungkin perlu akses penyunting (editor). Cuba lagi.'}; }
-    drawAdmin();
-  };
-}
-
 /* ====== TETAPAN & MUAT NAIK ====== */
 const CDN = 'https://cdnjs.cloudflare.com/ajax/libs/';
 const loadJs = u => new Promise((res, rej) => { const s = document.createElement('script'); s.src = u; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
@@ -623,13 +590,13 @@ function drawSettings(){
   const up = k => `<div class='dz' id='dz-${k}'><div style='font-size:30px'>\ud83d\udcc4</div><b>Klik untuk pilih fail PDF / Excel / CSV</b></div><input type='file' id='fl-${k}' accept='.pdf,.xlsx,.xls,.csv,.txt' hidden><textarea class='f' id='pt-${k}' placeholder='\u2026atau tampal nama di sini (satu nama setiap baris)'></textarea><button class='btn ghost sm' id='ps-${k}' style='margin-top:10px'>Proses teks</button>`;
   const sel = (k, st) => st && st.sheets.length > 1 ? `<select class='f' id='sl-${k}' style='margin-top:12px'>${st.sheets.map((s, i) => `<option value='${i}' ${i === st.pick ? 'selected' : ''}>Helaian: ${esc(s.name)} (${s.entries.length} nama)</option>`).join('')}</select>` : '';
   app.innerHTML = `<h1 style='margin:0'>\u2699\ufe0f Tetapan Pemilihan</h1>
-  <div class='tabs' style='display:inline-flex;margin-top:14px'><button id='s1'>Dashboard</button><button class='on'>\u2699\ufe0f Tetapan &amp; Muat Naik</button></div>
-  <div class='card' style='margin-top:16px'><b>Nama kelab / tajuk pemilihan</b><input class='f' id='cl' style='margin-top:8px' value='${esc(d.club)}'></div>
-  <div class='card' style='margin-top:16px'><b>\ud83d\udd11 Kata laluan AJK</b><p class='mut' style='margin-top:4px;font-size:13px'>Ditukar secara berasingan. Menukar kata laluan <b>tidak memadam</b> undi dan tidak menjejaskan pengundi.</p><input class='f' id='pw2' style='margin-top:8px' placeholder='Kata laluan baharu' value='${esc(d.pass)}'><button class='btn sm' id='pws' style='margin-top:10px;width:auto'>\ud83d\udcbe Simpan kata laluan sahaja</button><div class='err' id='pe'></div></div>
+  <div class='tabs' style='display:inline-flex;margin-top:14px'><button id='s1'>Dashboard</button><button class='on'>\u2699\ufe0f Tetapan &amp; Muat Naik</button><button id="s3">🗑️ Set Semula</button></div>
+  ${lockBanner()}<div class='card' style='margin-top:16px'><b>Nama kelab / tajuk pemilihan</b><input class='f' id='cl' style='margin-top:8px' value='${esc(d.club)}'></div>
+  <div class='card' style='margin-top:16px'><b>\ud83d\udd11 Kata laluan AJK</b><p class='mut' style='margin-top:4px;font-size:13px'>Kata laluan ini digunakan untuk <b>semua bahagian AJK</b> (Pemilihan AJK Baharu &amp; Pemenang). Menukarnya <b>tidak memadam</b> undi.</p><input class='f' id='pw2' style='margin-top:8px' placeholder='Kata laluan baharu' value='${esc(d.pass)}'><button class='btn sm' id='pws' style='margin-top:10px;width:auto'>\ud83d\udcbe Simpan kata laluan sahaja</button><div class='err' id='pe'></div></div>
   <h2>\ud83c\udfaf Jawatan Pemilihan</h2><p class='mut' style='margin-bottom:12px'>Tambah, ubah atau buang jawatan. Setiap jawatan boleh dimasukkan dalam kumpulan <b>Tertinggi</b> atau <b>Biasa</b>, dan calonnya diambil daripada senarai <b>Guru</b> atau <b>AKP</b>.</p>
   <div class='card res' id='pcard'>${d.pos.map((q, i) => `<div class='pr'><input class='f pe' data-pi='${i}' data-k='ic' value='${esc(q.ic || '')}' maxlength='4' aria-label='Ikon'><input class='f pt' data-pi='${i}' data-k='t' value='${esc(q.t)}' placeholder='Nama jawatan' aria-label='Nama jawatan'><select class='f ps' data-pi='${i}' data-k='g' aria-label='Kumpulan'><option value='1' ${q.g === 1 ? 'selected' : ''}>\u2b50 Tertinggi</option><option value='2' ${q.g === 2 ? 'selected' : ''}>\ud83e\udd1d Biasa</option></select><select class='f ps' data-pi='${i}' data-k='akp' aria-label='Sumber calon'><option value='0' ${!q.akp ? 'selected' : ''}>Calon Guru</option><option value='1' ${q.akp ? 'selected' : ''}>Calon AKP</option></select><button class='btn ghost sm' data-pd='${i}' title='Buang jawatan'>\u2715</button></div>`).join('') || `<p class='mut'>Tiada jawatan.</p>`}
   <div style='display:flex;gap:8px;flex-wrap:wrap;margin-top:12px'><button class='btn ghost sm' id='pa'>+ Tambah jawatan</button><button class='btn sm' id='ps' style='width:auto'>\ud83d\udcbe Simpan jawatan</button></div>
-  <p class='mut' style='margin-top:10px;font-size:12.5px'>Jumlah: <b>${d.pos.length}</b> jawatan (${d.pos.filter(q => q.g === 1).length} tertinggi, ${d.pos.filter(q => q.g === 2).length} biasa). Menyimpan jawatan akan <b>memadam semua undi sedia ada</b> supaya undian seragam.</p></div>
+  <p class='mut' style='margin-top:10px;font-size:12.5px'>Jumlah: <b>${d.pos.length}</b> jawatan (${d.pos.filter(q => q.g === 1).length} tertinggi, ${d.pos.filter(q => q.g === 2).length} biasa). Menyimpan <b>tidak memadam undi</b>, tetapi menambah/membuang jawatan atau menukar sumber calon dikunci selepas undian bermula.</p></div>
   <div class='err' id='er' style='${d.ok ? 'color:var(--ok)' : ''}'>${esc(d.msg)}</div>
   <h2>\ud83d\udc65 1. Senarai Pengundi</h2><p class='mut' style='margin-bottom:12px'>Semua guru &amp; AKP yang <b>boleh mengundi</b> (cth. helaian MEMO).</p>
   ${up('v')}${sel('v', d.vs)}
@@ -637,8 +604,8 @@ function drawSettings(){
   <h2>\ud83c\udfaf 2. Senarai Calon Jawatan</h2><p class='mut' style='margin-bottom:12px'>Nama yang <b>boleh dipilih</b> untuk jawatan (tidak termasuk yang sudah memegang jawatan). Nama di bawah tajuk <b>STAF</b> atau bertanda <b>(AKP)</b> dikira calon AKP.</p>
   ${up('c')}${sel('c', d.cs)}
   <div class='two'>${col(false, '\ud83c\udf93 Calon Guru')}${col(true, '\ud83d\udee0\ufe0f Calon AKP')}</div>
-  <button class='btn' id='sv' style='margin-top:26px'>\ud83d\udcbe Simpan senarai &amp; set semula undi</button>
-  <p class='mut' style='margin-top:10px'>Menyimpan senarai baharu akan memadam semua undi sedia ada.</p>`;
+  <button class='btn' id='sv' style='margin-top:26px'>\ud83d\udcbe Simpan senarai</button>
+  <p class='mut' style='margin-top:10px'>Menyimpan <b>tidak memadam undi</b>. Menukar senarai dikunci selepas undian bermula; gunakan tab Set Semula jika perlu mulakan semula.</p>`;
   const sync = () => { d.club = $('#cl').value; d.pass = $('#pw2').value; };
   app.querySelectorAll('[data-pi]').forEach(el => el.onchange = el.oninput = () => { const q = d.pos[+el.dataset.pi], k = el.dataset.k; q[k] = k === 'g' ? +el.value : k === 'akp' ? el.value === '1' : el.value; if (el.tagName === 'SELECT') { sync(); drawSettings(); } });
   app.querySelectorAll('[data-pd]').forEach(b => b.onclick = () => { sync(); d.pos.splice(+b.dataset.pd, 1); d.msg = ''; drawSettings(); });
@@ -653,12 +620,10 @@ function drawSettings(){
     const ng = P.filter(q => !q.akp).length, na = P.filter(q => q.akp).length;
     if (ng > ROSTER.length) return bad(`Jawatan calon Guru (${ng}) melebihi bilangan calon Guru (${ROSTER.length}).`);
     if (na > AKPS.length) return bad(`Jawatan calon AKP (${na}) melebihi bilangan calon AKP (${AKPS.length}).`);
-    if (!parm) { parm = true; e.target.textContent = '\u26a0\ufe0f Klik sekali lagi \u2014 semua undi akan dipadam'; return; }
+    const sameS = JSON.stringify(P.map(q => [q.id, q.akp])) === JSON.stringify(POS.map(q => [q.id, !!q.akp])); if (!sameS && vcount()) return bad(lockMsg());
     e.target.disabled = true; e.target.textContent = 'Menyimpan\u2026';
     try {
-      await db.doc('config/main').set({club: CFG.club, guru: ROSTER, akp: AKPS, voters: VOTERS, ver: Date.now(), pass: CFG.pass || '', pos: P});
-      const old = await db.collection('votes').get();
-      for (const x of old.docs) await db.collection('votes').doc(x.id).delete();
+      await db.doc('config/main').set({club: CFG.club, guru: ROSTER, akp: AKPS, voters: VOTERS, ver: sameS ? CFG.ver : Date.now(), pass: CFG.pass || '', pos: P});
       S.draft = null; S.sub = 'dash'; S.exp = {}; drawAdmin();
     } catch (x) { bad('Gagal menyimpan. Anda mungkin perlu akses penyunting (editor) untuk menukar tetapan.'); }
   };
@@ -672,7 +637,7 @@ function drawSettings(){
     d.ok = true; d.msg = `\u2713 ${d.voters.length} pengundi dan ${d.cand.length} calon (${d.cand.filter(x => x.akp).length} AKP) dikesan. Sila semak senarai.`;
     drawSettings();
   };
-  $('#s1').onclick = () => { S.sub = 'dash'; drawAdmin(); };
+  $('#s1').onclick = () => { S.sub = 'dash'; drawAdmin(); }; $('#s3').onclick = () => { S.sub = 'rst'; S.draft = null; drawAdmin(); };
   ['v', 'c'].forEach(k => {
     $('#dz-' + k).onclick = () => $('#fl-' + k).click();
     $('#fl-' + k).onchange = async e => {
@@ -691,7 +656,7 @@ function drawSettings(){
     if (np.length < 4) { pe.textContent = 'Kata laluan sekurang-kurangnya 4 aksara.'; return; }
     btn.disabled = true; btn.textContent = 'Menyimpan\u2026';
     try {
-      await db.doc('config/main').set({pass: np}, {merge: true}); /* hanya medan pass; ver & undi tidak disentuh */
+      await db.doc('config/auth').set({pass: np}); /* hanya medan pass; ver & undi tidak disentuh */
       d.pass = ''; $('#pw2').value = ''; pe.style.color = 'var(--ok)'; pe.textContent = '\u2713 Kata laluan dikemas kini. Undi tidak terjejas.';
     } catch (x) { pe.textContent = 'Gagal menyimpan (' + ((x && x.code) || 'ralat') + '). Anda mungkin perlu akses penyunting (editor).'; }
     btn.disabled = false; btn.textContent = '\ud83d\udcbe Simpan kata laluan sahaja';
@@ -703,18 +668,142 @@ function drawSettings(){
     if (!d.voters.length) { d.msg = 'Senarai pengundi kosong.'; d.ok = false; return drawSettings(); }
     if (g.length < 7) { d.msg = 'Calon guru mesti sekurang-kurangnya 7 nama.'; d.ok = false; return drawSettings(); }
     if (!a.length) { d.msg = 'Sekurang-kurangnya 1 calon AKP diperlukan.'; d.ok = false; return drawSettings(); }
-    if (!sarm) { sarm = true; $('#sv').textContent = '\u26a0\ufe0f Klik sekali lagi \u2014 semua undi akan dipadam'; return; }
+    const same = JSON.stringify([g, a, d.voters]) === JSON.stringify([ROSTER, AKPS, VOTERS]); if (!same && vcount()) { d.msg = lockMsg(); d.ok = false; return drawSettings(); }
     $('#sv').disabled = true; $('#sv').textContent = 'Menyimpan\u2026';
     try {
-      await db.doc('config/main').set({club: d.club.trim() || 'KGS SERIN', guru: g, akp: a, voters: d.voters, ver: Date.now(), pass: CFG.pass || '', pos: POS});
-      const old = await db.collection('votes').get();
-      for (const x of old.docs) await db.collection('votes').doc(x.id).delete();
+      await db.doc('config/main').set({club: d.club.trim() || 'KGS SERIN', guru: g, akp: a, voters: d.voters, ver: same ? CFG.ver : Date.now(), pass: CFG.pass || '', pos: POS});
       S.draft = null; S.sub = 'dash'; drawAdmin();
     } catch (x) { d.msg = 'Gagal menyimpan. Anda mungkin perlu akses penyunting (editor) untuk menukar tetapan.'; d.ok = false; drawSettings(); }
   };
 }
 
+const swCard = () => `<div class="card" style="margin-top:16px"><b>🔌 Suis ON / OFF — ${MLBL(MODE)}</b><p class="mut" style="font-size:13px;margin:4px 0 8px">Matikan (OFF) jika bahagian ini belum dibuka atau sudah selesai, supaya guru tidak boleh masuk.</p><div class="sum" style="align-items:center"><span style="color:var(--tx);font-weight:700">${MODE === 'win' ? '👑 Pemilihan Pemenang' : '🗳️ Pemilihan AJK Baharu'}</span><button class="sw ${SW[MODE] ? 'on' : ''}" data-sw="${MODE}" aria-pressed="${SW[MODE]}"><i></i><em>${SW[MODE] ? 'ON' : 'OFF'}</em></button></div></div>`;
+const LN = t => [...new Set(String(t).split('\n').map(x => x.replace(/^\s*\d+\s*[.)\-:]\s*/, '').trim()).filter(x => x.length > 1))];
+function drawWinSettings(){
+  const d = S.draft || (S.draft = {club: CFG.club, msg: '', ok: false, t: {voters: VOTERS.join('\n'), king: NOM.king.join('\n'), queen: NOM.queen.join('\n'), family: NOM.family.join('\n')}});
+  const B = [['voters', '👥 Senarai Pengundi', 'Semua guru &amp; AKP yang boleh mengundi.']].concat(WPOS.map(p => [p.id, p.ic + ' Calon ' + p.t, 'Senarai nama yang bertanding untuk kategori ' + p.t + '.']));
+  app.innerHTML = `<h1 style="margin:0">⚙️ Tetapan Pemilihan Pemenang</h1>
+  <div class="tabs" style="display:inline-flex;margin-top:14px"><button id="s1">Dashboard</button><button class="on">⚙️ Tetapan &amp; Muat Naik</button><button id="s3">🗑️ Set Semula</button></div>
+  ${lockBanner()}<div class="card" style="margin-top:16px"><b>Tajuk pemilihan</b><input class="f" id="cl" style="margin-top:8px" value="${esc(d.club)}"></div>
+  ${B.map(([k, t, ds]) => `<h2>${t}</h2><p class="mut" style="margin-bottom:10px">${ds} Satu nama setiap baris, atau muat naik fail PDF / Excel / CSV.</p>
+  <div class="dz" data-dz="${k}"><b>📄 Klik untuk muat naik fail</b></div><input type="file" data-fl="${k}" accept=".pdf,.xlsx,.xls,.csv,.txt" hidden>
+  <textarea class="f" data-ta="${k}" style="min-height:150px" placeholder="Satu nama setiap baris">${esc(d.t[k])}</textarea>
+  <p class="note"><span id="n-${k}">${LN(d.t[k]).length} nama</span>${k === 'voters' ? ' · <button class="btn ghost sm" id="cp" style="display:inline-flex">↧ Guna senarai pengundi Pemilihan AJK</button>' : ''}</p>`).join('')}
+  <div class="err" style="${d.ok ? 'color:var(--ok)' : ''}">${esc(d.msg)}</div>
+  <button class="btn" id="sv" style="margin-top:20px">💾 Simpan senarai</button>
+  <p class="mut" style="margin-top:10px">Menyimpan <b>tidak memadam undi</b>; menukar senarai dikunci selepas undian bermula. Kategori tanpa calon tidak akan dipaparkan kepada guru.</p>`;
+  const sync = () => { d.club = $('#cl').value; };
+  $('#s1').onclick = () => { S.sub = 'dash'; S.draft = null; drawAdmin(); }; $('#s3').onclick = () => { S.sub = 'rst'; S.draft = null; drawAdmin(); };
+  app.querySelectorAll('[data-ta]').forEach(t => t.oninput = () => { d.t[t.dataset.ta] = t.value; $('#n-' + t.dataset.ta).textContent = LN(t.value).length + ' nama'; });
+  app.querySelectorAll('[data-dz]').forEach(z => z.onclick = () => app.querySelector('[data-fl="' + z.dataset.dz + '"]').click());
+  app.querySelectorAll('[data-fl]').forEach(f => f.onchange = async () => {
+    const x = f.files[0]; if (!x) return; sync();
+    try { const sh = await parseFile(x); if (!sh.length) throw 0; d.t[f.dataset.fl] = uniq(sh[vPick(sh)].entries).map(e => e.n).join('\n'); d.ok = true; d.msg = '✓ Fail dibaca. Sila semak senarai sebelum simpan.'; }
+    catch (e) { d.ok = false; d.msg = 'Gagal membaca fail. Cuba format lain atau tampal teks.'; }
+    drawWinSettings();
+  });
+  $('#cp').onclick = async () => { sync(); try { const x = await db.doc('config/main').get(); if (x.exists && x.data().voters) d.t.voters = x.data().voters.join('\n'); } catch (e) {} drawWinSettings(); };
+  let arm = false;
+  $('#sv').onclick = async e => {
+    sync(); const v = LN(d.t.voters), n = {}; WPOS.forEach(p => n[p.id] = LN(d.t[p.id]));
+    const bad = m => { arm = false; d.msg = m; d.ok = false; drawWinSettings(); };
+    if (!v.length) return bad('Senarai pengundi kosong.');
+    if (!WPOS.some(p => n[p.id].length)) return bad('Sekurang-kurangnya satu kategori mesti ada calon.');
+    const same = JSON.stringify([v, n]) === JSON.stringify([VOTERS, NOM]); if (!same && vcount()) return bad(lockMsg());
+    e.target.disabled = true; e.target.textContent = 'Menyimpan…';
+    try {
+      await db.doc('config/win').set({club: d.club.trim() || 'KGS SERIN 2026', voters: v, noms: n, ver: same ? CFG.ver : Date.now(), pass: CFG.pass || ''});
+      S.draft = null; S.sub = 'dash'; S.exp = {}; drawAdmin();
+    } catch (x) { bad('Gagal menyimpan. Anda mungkin perlu akses penyunting (editor).'); }
+  };
+}
+
+const MLBL = m => m === 'win' ? 'Pemenang' : 'AJK Baharu';
+const mNames = (m, c) => m === 'win' ? WPOS.flatMap(p => (c && c.noms && c.noms[p.id]) || []) : (c && c.guru ? c.guru.concat(c.akp || []) : D0.R.concat(D0.A));
+const mVotes = (m, arr) => arr.filter(v => (v.mode || 'ajk') === m);
+const allVotes = async () => (await db.collection('votes').get()).docs.map(d => d.data());
+const cfgOf = async path => { const x = await db.doc(path).get(); return x.exists ? x.data() : null; };
+const mCfg = m => m === 'win' ? 'config/win' : 'config/main';
+async function doBackup(m){
+  m = m === 'win' || m === 'ajk' ? m : MODE;
+  try {
+    const c = await cfgOf(mCfg(m)), votes = mVotes(m, await allVotes()), t = new Date(), z = n => String(n).padStart(2, '0');
+    const b = new Blob([JSON.stringify({app: 'kgs-undian', v: 3, mode: m, label: MLBL(m), ts: Date.now(), config: c, names: mNames(m, c), votes}, null, 1)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(b); a.download = `sandaran-undi-${m === 'win' ? 'PEMENANG' : 'AJK'}-${t.getFullYear()}${z(t.getMonth() + 1)}${z(t.getDate())}-${z(t.getHours())}${z(t.getMinutes())}.json`;
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  } catch (e) { alert('Gagal membuat sandaran (' + ((e && e.code) || 'ralat') + '). Semak sambungan dan cuba lagi.'); }
+}
+/* Terima format baharu (app:'kgs-undian') DAN format lama (type:'sandaran-undi-kgs', cfg, undi dibungkus dalam data) */
+function parseBackup(txt){
+  let j; try { j = JSON.parse(txt); } catch (e) { throw new Error('Fail bukan JSON yang sah.'); }
+  let mode, config, names, raw;
+  if (j && j.app === 'kgs-undian') { mode = j.mode; config = j.config; names = j.names; raw = j.votes; }
+  else if (j && j.type === 'sandaran-undi-kgs') { mode = j.mode || 'ajk'; config = j.cfg; names = j.names; if (names === undefined && config && config.guru) names = config.guru.concat(config.akp || []); raw = j.votes; }
+  else throw new Error('Format fail sandaran tidak dikenali.');
+  if (mode !== 'ajk' && mode !== 'win') throw new Error('Fail sandaran tidak menyatakan bahagian (AJK Baharu / Pemenang).');
+  if (!Array.isArray(raw)) throw new Error('Fail sandaran tidak mengandungi senarai undi.');
+  const votes = raw.map(x => { const d = x && x.data && typeof x.data === 'object' && x.idx === undefined && x.picks === undefined ? x.data : x; return {id: x && x.id, v: Object.assign({}, d, {mode})}; })
+    .filter(e => e.v.log ? (e.v.lid || e.id) : typeof e.v.idx === 'number');
+  return {mode, config, names, votes};
+}
+async function doRestore(m, file){
+  const j = parseBackup(await file.text());
+  if (j.mode !== m) throw new Error('Fail ini ialah sandaran ' + MLBL(j.mode) + ', bukan ' + MLBL(m) + '. Gunakan butang pulihkan di kad ' + MLBL(j.mode) + '.');
+  const path = mCfg(m), cur = await cfgOf(path), curVer = (cur && cur.ver) || 0, pref = m === 'win' ? 'w' : 'v';
+  const n = mVotes(m, await allVotes()).filter(v => !v.log && (v.ver || 0) === curVer).length;
+  const cv = j.config === undefined ? curVer : ((j.config && j.config.ver) || 0);
+  const same = cv === curVer && JSON.stringify(j.names) === JSON.stringify(mNames(m, cur));
+  if (!same && n > 0) throw new Error('Terdapat ' + n + ' undi sedia ada dengan senarai yang berbeza. Muat turun sandaran semasa, kemudian padam semua undi dahulu sebelum memulihkan fail ini.');
+  if (!same) {
+    if (j.config === undefined) throw new Error('Fail sandaran lama ini tidak mengandungi senarai, jadi tidak boleh dipulihkan ke senarai yang berbeza.');
+    if (j.config) { const c = Object.assign({}, j.config); if (c.pass === undefined && cur && cur.pass) c.pass = cur.pass; await db.doc(path).set(c); } else await db.doc(path).delete();
+  }
+  const b = db.batch(); j.votes.forEach(e => b.set(db.collection('votes').doc(e.v.log ? (e.v.lid || e.id) : pref + e.v.idx), e.v)); await b.commit();
+  const ev = j.config === undefined ? curVer : cv, all = j.votes.filter(e => !e.v.log), ok = all.filter(e => (e.v.ver || 0) === ev).length;
+  return '✓ Dipulihkan (' + MLBL(m) + '): ' + (same ? '' : 'senarai & tetapan, ') + all.length + ' undi.' + (ok < all.length ? ' ⚠️ ' + (all.length - ok) + ' undi tidak dikira di Dashboard kerana versi senarainya berbeza.' : ' Lihat di Dashboard → Penyertaan / Ikut Jawatan.');
+}
+const vcount = () => S.votes.filter(v => !v.log && (v.ver || 0) === CFG.ver).length;
+const lockMsg = () => `Senarai/jawatan dikunci kerana sudah ada ${vcount()} undi; menukarnya akan merosakkan undi sedia ada. Muat turun sandaran dan gunakan tab 🗑️ Set Semula dahulu jika benar-benar mahu mulakan semula.`;
+const lockBanner = () => vcount() ? `<div class="card" style="margin-top:16px;border-color:var(--gold)"><b>🔒 Dikunci: ${vcount()} undi telah direkodkan</b><p class="mut" style="font-size:13px;margin:4px 0 0">Senarai pengundi/calon dan jawatan tidak boleh diubah kerana undi sedia ada merujuk kepada senarai ini. Tajuk masih boleh ditukar.</p></div>` : '';
+function drawReset(){
+  const cur = S.votes.filter(v => !v.log && (v.ver || 0) === CFG.ver), cf = S.cf || '', ok = cf.trim().toUpperCase() === 'SET SEMULA' && cur.length > 0;
+  const rv = cur.length ? cur.slice().sort((a, b) => a.idx - b.idx).map(v => `<div class="ld"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between"><div><div class="ln">✓ ${esc(VOTERS[v.idx] || v.voter || '?')}</div><div class="lm">${v.ts ? 'Mengundi: ' + esc(new Date(v.ts).toLocaleString('ms-MY')) : ''}</div></div><button class="btn ghost sm" data-rv="${v.idx}">↩ Benarkan undi semula</button></div></div>`).join('') : '<p class="mut">Belum ada undi.</p>';
+  app.innerHTML = `<h1 style="margin:0">🗑️ Set Semula Undian</h1>
+  <div class="tabs" style="display:inline-flex;margin-top:14px"><button id="s1">Dashboard</button><button id="s2">⚙️ Tetapan &amp; Muat Naik</button><button class="on">🗑️ Set Semula</button></div>
+  <div class="card" style="margin-top:16px;border-color:#e11d48"><b>⚠️ Bahagian sensitif — ${MODE === 'win' ? 'Pemenang' : 'AJK Baharu'}</b><p class="mut" style="font-size:13px;margin:4px 0 0">Tindakan di sini memadam undi secara kekal. Sila muat turun sandaran dahulu. Menyimpan senarai di Tetapan tidak memadam undi.</p></div>
+  <h2>💾 1. Sandaran &amp; pemulihan undi — ${MLBL(MODE)}</h2><p class="note" style="margin:-6px 2px 10px">Fail sandaran ini hanya untuk bahagian <b>${MLBL(MODE)}</b>. Fail daripada bahagian lain akan ditolak.${MODE === 'ajk' ? ' Fail sandaran lama (format sebelum ini) diterima di sini.' : ''}</p>
+  ${[MODE].map(m => { const k = cur.length, r = (S.rm || {})[m]; return `<div class="card res"><h3><span>${m === 'win' ? '👑' : '🗳️'} Sandaran ${MLBL(m)}</span><span class="mut">${k} undi</span></h3><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn ghost sm" id="bk-${m}">⬇ Muat turun sandaran ${MLBL(m)}</button><button class="btn ghost sm" id="rsb-${m}">⬆ Pulihkan ke ${MLBL(m)}</button></div><input type="file" id="rf-${m}" accept=".json" hidden><div class="err" id="re-${m}" style="${r && r.ok ? 'color:var(--ok)' : ''}">${esc(r ? r.t : '')}</div></div>`; }).join('')}
+  <h2>↩ 2. Benarkan seorang guru mengundi semula</h2><p class="note" style="margin:-6px 2px 10px">Sahkan dahulu dengan guru itu. Undi lamanya dibatalkan dan disimpan dalam sejarah di Dashboard → Penyertaan.</p><div class="card res">${rv}</div>
+  <h2>🗑️ 3. Padam semua undi</h2><div class="card res"><p class="mut">${cur.length} undi akan dipadam. Senarai, jawatan dan tetapan <b>kekal</b>.</p><input class="f" id="cf" placeholder="Taip SET SEMULA untuk mengesahkan" value="${esc(cf)}" style="margin-top:10px"><button class="btn" id="rs" style="background:#e11d48" ${ok ? '' : 'disabled'}>🗑️ Padam semua undi</button><div class="err" id="rse"></div></div>`;
+  $('#s1').onclick = () => { S.sub = 'dash'; drawAdmin(); };
+  $('#s2').onclick = () => { S.sub = 'set'; S.draft = null; drawAdmin(); };
+  $('#cf').oninput = e => { S.cf = e.target.value; $('#rs').disabled = !(S.cf.trim().toUpperCase() === 'SET SEMULA' && vcount() > 0); };
+  [MODE].forEach(m => {
+    $('#bk-' + m).onclick = () => doBackup(m); $('#rsb-' + m).onclick = () => $('#rf-' + m).click();
+    $('#rf-' + m).onchange = async e => {
+      const f = e.target.files[0]; if (!f) return; S.rm = S.rm || {};
+      try { S.rm[m] = {ok: true, t: await doRestore(m, f)}; } catch (x) { S.rm[m] = {ok: false, t: x.message || 'Gagal membaca fail sandaran.'}; }
+      drawReset();
+    };
+  });
+  app.querySelectorAll('[data-rv]').forEach(b => { let arm = false; b.onclick = async () => {
+    if (!arm) { arm = true; b.textContent = '⚠️ Sahkan: batalkan undi & benarkan semula'; return; }
+    b.disabled = true; b.textContent = 'Memproses…';
+    try {
+      const i = +b.dataset.rv, ref = db.collection('votes').doc(VP() + i), snap = await ref.get();
+      if (snap.exists) { const d0 = snap.data(), lid = 'log_' + Date.now() + '_' + i, batch = db.batch(); batch.set(db.collection('votes').doc(lid), Object.assign({}, d0, {log: true, lid, ver: -1, origVer: d0.ver || 0, resetTs: Date.now()})); batch.delete(ref); await batch.commit(); }
+    } catch (x) { arm = false; b.disabled = false; b.textContent = 'Gagal — cuba lagi'; }
+  }; });
+  $('#rs').onclick = async e => {
+    e.target.disabled = true; e.target.textContent = 'Memadam…'; S.cf = '';
+    try { const all = await db.collection('votes').get(); for (const x of all.docs.filter(z => { const d = z.data(); return (d.mode || 'ajk') === MODE && !d.log; })) await db.collection('votes').doc(x.id).delete(); }
+    catch (x) { $('#rse').textContent = 'Gagal memadam.'; }
+  };
+}
+
 render();
+initFirebase();
 </script>
 </body>
 </html>
