@@ -247,6 +247,10 @@ const S = {tab:'guru', step:'login', voter:null, picks:{}, admin:false, sub:'das
 let db = null, unsub = null, lastCfg = null;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const norm = s => s.toLowerCase().replace(/\b(en|pn|cik|dr|encik|puan|cikgu|tuan|ustaz|ustazah)\b\.?/g,' ').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+/* Pemenang: pengundi tidak boleh mengundi nama sendiri (padanan tidak bergantung pada bin/binti/bt/b) */
+const nkey = s => norm(String(s)).replace(/\b(binti|bint|bte|bt|bin|b)\b/g,' ').replace(/\s+/g,' ').trim();
+const isSelf = i => MODE === 'win' && S.voter !== null && S.voter !== undefined && nkey(ALL[i]) === nkey(VOTERS[S.voter]);
+const RP = () => MODE === 'win' ? POS.filter(p => ALL.some((n, i) => OWN[i] === p.id && !isSelf(i))) : POS;
 const ini = n => n.replace(/^(En|Pn|Cik|Dr)\.\s*/,'').split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();
 const av = (i, n) => `<span class="av" style="background:hsl(${(i*47)%360} 62% 50%)">${ini(n)}</span>`;
 
@@ -375,15 +379,16 @@ const chosen = () => Object.values(S.picks);
 function viewBallot(){
   const n = chosen().length, card = p => {
     const i = S.picks[p.id], has = i !== undefined;
+    if (!RP().includes(p)) return `<button class="pos" disabled><span class="ic">${p.ic}</span><span style="min-width:0"><small>${p.t}</small><b>Tiada calon lain</b></span></button>`;
     return `<button class="pos ${has?'sel':''}" data-p="${p.id}"><span class="ic">${has?'✓':p.ic}</span>
     <span style="min-width:0"><small>${p.t}</small><b>${has?esc(ALL[i]):'Pilih nama →'}</b></span></button>`;
   };
   app.innerHTML = `<div class="prog"><div class="card"><div style="font-size:13px"><span class="mut">Selamat datang,</span><br><b>${esc(VOTERS[S.voter])}</b></div>
-    <div class="bar"><i style="width:${n/POS.length*100}%"></i></div><div class="cnt">${n}/${POS.length}</div></div></div>
+    <div class="bar"><i style="width:${n/(RP().length||1)*100}%"></i></div><div class="cnt">${n}/${RP().length}</div></div></div>
   ${gCount(1) ? `<h2>${H1()}</h2><div class="grid">${POS.filter(p=>p.g===1).map(card).join('')}</div>` : ''}
   ${gCount(2) ? `<h2>🤝 ${gCount(2)} AJK Biasa</h2><div class="grid">${POS.filter(p=>p.g===2).map(card).join('')}</div>` : ''}
-  <p class="mut" style="margin-top:18px">${MODE==='win'?'Pilih seorang calon bagi setiap kategori.':'Nama yang telah dipilih akan hilang daripada senarai jawatan lain.'}</p>
-  <button class="btn" id="sub" ${n<POS.length?'disabled':''}>${n<POS.length?`Pilih ${POS.length-n} lagi ${MODE==='win'?'kategori':'jawatan'}`:'Semak &amp; Hantar Undi ✓'}</button>
+  <p class="mut" style="margin-top:18px">${MODE==='win'?'Pilih seorang calon bagi setiap kategori. Anda tidak boleh mengundi nama sendiri.':'Nama yang telah dipilih akan hilang daripada senarai jawatan lain.'}</p>
+  <button class="btn" id="sub" ${n<RP().length?'disabled':''}>${n<RP().length?`Pilih ${RP().length-n} lagi ${MODE==='win'?'kategori':'jawatan'}`:'Semak &amp; Hantar Undi ✓'}</button>
   <button class="btn ghost" id="out">Batal &amp; keluar</button>`;
   app.querySelectorAll('.pos').forEach(b => b.onclick = () => openPicker(b.dataset.p));
   $('#sub').onclick = openConfirm;
@@ -395,7 +400,7 @@ $('#ov').onclick = e => { if (e.target.id === 'ov') closeSheet(); };
 
 function openPicker(pid){
   const p = POS.find(x => x.id === pid), cur = S.picks[pid], used = chosen().filter(i => i !== cur);
-  const pool = ALL.map((n,i)=>i).filter(i => MODE === 'win' ? OWN[i] === pid : (!!(p.akp || pid === 'akp') === isAkp(i) && !used.includes(i)));
+  const pool = ALL.map((n,i)=>i).filter(i => MODE === 'win' ? OWN[i] === pid && !isSelf(i) : (!!(p.akp || pid === 'akp') === isAkp(i) && !used.includes(i)));
   openSheet(`<div style="display:flex;justify-content:space-between;align-items:center"><div><small class="mut">Pilih untuk jawatan</small><div style="font-weight:800;font-size:18px">${p.ic} ${p.t}</div></div>
     <button class="btn ghost sm" id="x">Tutup</button></div>
     <input class="f" id="q" placeholder="Cari nama…" style="margin-top:12px"><div class="list" id="ls"></div>`);
@@ -412,12 +417,13 @@ function openPicker(pid){
 }
 function openConfirm(){
   openSheet(`<div style="font-weight:800;font-size:18px;margin-bottom:8px">Semak undi anda</div><div class="list">${
-    POS.map(p => `<div class="sum"><span>${p.t}</span><b>${esc(ALL[S.picks[p.id]])}</b></div>`).join('')}</div>
+    RP().map(p => `<div class="sum"><span>${p.t}</span><b>${esc(ALL[S.picks[p.id]])}</b></div>`).join('')}</div>
     <p class="err" id="ce"></p><button class="btn" id="ok">Hantar Undi</button><button class="btn ghost" id="bk">Kembali ubah</button>`);
   $('#bk').onclick = closeSheet;
   $('#ok').onclick = async () => {
     $('#ok').disabled = true; $('#ok').textContent = 'Menghantar…';
     try {
+      if (MODE === 'win' && Object.values(S.picks).some(i => isSelf(i))) { $('#ok').disabled = false; $('#ok').textContent = 'Hantar Undi'; $('#ce').textContent = 'Anda tidak boleh mengundi nama sendiri. Sila ubah pilihan.'; return; }
       const ref = db.collection('votes').doc(VP() + S.voter);
       if ((s => s.exists && (s.data().ver||0) === CFG.ver)(await ref.get())) { S.step = 'done'; S.already = true; return render(); }
       await ref.set({mode: MODE, voter: VOTERS[S.voter], idx: S.voter, picks: S.picks, ts: Date.now(), ver: CFG.ver});
